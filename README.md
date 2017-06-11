@@ -1,4 +1,4 @@
 # EDUNOVA
 
-Ovdje se nalaze sve domace zadace i svi zadaci za vjezbu. 
-Sav ovaj kod sam radio za vrijeme pohadjanja tecaja PHP programiranje.
+Ovdje je nalazi domaca zadaca u kojoj je bio zadatak napraviti "program".
+Ovo je program koji uzima vrijednosti iz GET parametara, te s njima radi neke matematicke operacije.
