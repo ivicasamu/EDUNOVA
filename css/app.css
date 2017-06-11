@@ -1,0 +1,21 @@
+.row{
+	width: 50%;
+}
+.button{
+	background-color: #D3D3D3;
+	border: 2px solid #AFAFAF;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+td{
+	text-align: right;
+	border: 1px solid black;
+}
+
+a{
+	color: black;
+}
+
