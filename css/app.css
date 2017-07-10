@@ -1,0 +1,14 @@
+.row{
+	max-width: 100%;
+}
+
+.button{
+	width: 100%;
+}
+
+#container {
+	min-width: 310px;
+	max-width: 960px;
+	height: 400px;
+	margin: 0 auto;
+}
