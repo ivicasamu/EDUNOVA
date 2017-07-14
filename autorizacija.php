@@ -3,14 +3,12 @@ include_once 'konfiguracija.php';
 if(!isset($_POST["korisnik"]) || !isset($_POST["korisnik"])){
 	header("location: " . $putanjAPP ."index.php");
 }
-$izraz=$veza->prepare("select * from operater where email=:email and lozinka=md5(:lozinka)");
-$izraz->execute(array("email"=>$_POST["korisnik"], "lozinka" =>$_POST["lozinka"]));
-$operater = $izraz->fetch(PDO::FETCH_OBJ);
-if($operater!=null){
-	$_SESSION["logiran"] = $operater;
-	header("location: " . $putanjaAPP . "privatno/nadzornaPloca.php.");
+
+if($_POST["korisnik"]==="dvd" && $_POST["lozinka"]==='123'){
+	$_SESSION["logiran"]=$_POST["korisnik"];
+	header("location: ". $putanjaAPP ."privatno/nadzornaPloca.php");
 }else{
-	header("location: " . $putanjaApp . "javno/prijava.php?neuspio&korisnik=" . $_POST["korisnik"]);
+	header("location: ".putanjaAPP ."javno/prijava.php?neuspio&korisnik=". $_POST["korisnik"]);
 }
 
 ?>
