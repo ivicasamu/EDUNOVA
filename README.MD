@@ -1,5 +1,5 @@
 Za vrijeme ljetnih potrebno je napraviti novu aplikaciju koja se veže na moju bazu koju sam napravio (vatrogasci).
-- stranica je podijeljena ja javni i privatni dio
+- stranica je podijeljena na javni i privatni dio
 - na javnom dijelu se vidi Login i Kontakt stranica
 - na kontakt stranicu dodana google mapa sa lokacijom
 - kreiran je i dodan Favicon
