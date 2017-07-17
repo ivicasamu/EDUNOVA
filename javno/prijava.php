@@ -11,7 +11,7 @@
   			<div class="large-12 columns">
   				<div class="callout">
   					<div class="row">
-  						<h1 style="width:100%; text-align: center">Prijava u <?php echo $naslovAPP ?> aplikaciju</h1>
+  						<h1 style="width:100%; text-align: center">Prijava u aplikaciju</h1>
   						<div class="large-4 columns large-centered">
   							<?php 
   							if(isset($_GET["neuspio"])){
@@ -23,11 +23,11 @@
 							}
 							
 							if(isset($_GET["odlogiranSi"])){
-								echo "Uspijepno ste se odjavili iz aplikacije!";
+								echo "Uspiješno ste se odjavili iz aplikacije!";
 							}
   							?>
   							<form method="post" action="<?php echo $putanjaAPP; ?>autorizacija.php">
-  								<label for="korisnik">Korisnik</label>
+  								<label for="korisnik">E-mail</label>
   								<input type="text" name="korisnik" id="korisnik" 
   								value="<?php echo isset($_GET["korisnik"]) ? $_GET["korisnik"] : ""; ?>" />
   								<label for="lozinka">Lozinka</label>

@@ -1,5 +1,6 @@
 <?php  
 session_start();
+include_once 'funkcije.php';
 
 $naslovAPP = "Summer Project 01";
 
