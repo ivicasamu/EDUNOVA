@@ -31,7 +31,7 @@ if(isset($_POST["oib"])){
 		}
 	}
 	if(count($greske)===0){
-		$izraz = $veza->prepare("insert into clan (ime, prezime, oib, datumRodenja, ulica, mjesto, telefon, mail, datumUclanjenja, cin, funkcija) 
+		$izraz = $veza->prepare("insert into clan (ime, prezime, oib, datum_rodenja, ulica, mjesto, telefon, mail, datum_uclanjenja, cin, funkcija) 
 		values (:ime, :prezime, :oib, :datumRodenja, :ulica, :mjesto, :telefon, :mail, :datumUclanjenja, :cin, :funkcija)");
 		$unioRedova = $izraz->execute($_POST);
 	}
@@ -49,7 +49,7 @@ if(isset($_POST["oib"])){
   			<div class="large-6 medium-12 small-12 columns large-centered">
   				<form method="POST">
   					<fieldset class="fieldset">
-  						<legend>Unos novog člana</legend>
+  						<legend>UNOS NOVOG ČLANA</legend>
   						
   						<label id="lime" for="ime">Ime</label>
   						<input 
@@ -76,7 +76,7 @@ if(isset($_POST["oib"])){
   						name="oib" id="oib" type="number" />
   						
   						<label id="datumRodenja" for="datumRodenja">Datum rođenja</label>
-  						<input name="datumRodenja" id="datumRodenja" type="datetime" />
+  						<input name="datumRodenja" id="datumRodenja" type="datetime" placeholder="yyyy/mm/dd hh-mm" />
   						
   						<label id="ulica" for="ulica">Ulica i broj</label>
   						<input name="ulica" id="ulica" type="text" />
@@ -91,7 +91,7 @@ if(isset($_POST["oib"])){
   						<input name="mail" id="mail" type="email" />
   						
   						<label id="datumUcljanjenja" for="datumUclanjenja">Datum učlanjenja</label>
-  						<input name="datumUclanjenja" id="datumUclanjenja" type="datetime" />
+  						<input name="datumUclanjenja" id="datumUclanjenja" type="datetime" placeholder="yyyy/mm/dd hh-mm" />
   						
   						<label id="cin" for="cin">Čin u vatrogastvu</label>
   						<select id="cin" name="cin">

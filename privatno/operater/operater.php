@@ -1,5 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
+provjeraUloga("admin");
 $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 ?>
 <!doctype html>
@@ -20,27 +21,23 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
   							</form>
   						</div>
   						<div class="large-6 medium-6 small-12 columns">
-  							<a href="drustvoUnos.php" class="button expanded">DODAJ NOVO DRUŠTVO</a>
+  							<a href="operaterUnos.php" class="button expanded">DODAJ NOVOG OPERATERA</a>
   						</div>
   					</div>
   					<table class="hover">
   						<thead>
   							<tr>
-  								<th>Šifra</th>
-  								<th>Naziv društva</th>
-  								<th>OIB</th>
-  								<th>Adresa</th>
-  								<th>Godina osnivanja</th>
+  								<th width="6%">Šifra</th>
+  								<th>Ime i prezime</th>
+  								<th>Email</th>
+  								<th>Uloga</th>
   								<th>Akcija</th>
   							</tr>
   						</thead>
   						<tbody>
   							<?php  
-	  							$izraz = $veza->prepare("select  a.sifra, a.naziv, a.oib, concat(a.mjesto,', ',a.ulica) as adresa, a.godina_osnivanja, 
-	  							count(b.clan) as clan, count(b.dvd) as vozilo
-	  							from dvd a left join dvd_clan b on a. sifra=b.dvd
-	  							where a.naziv like :uvjet 
-	  							group by a.sifra, a.naziv");
+	  							$izraz = $veza->prepare("select sifra, concat(ime, ' ', prezime) as imePrezime, email, uloga from operater 
+	  							where ime like :uvjet");
 								$uvjet="%" . $uvjet . "%";
 								$izraz -> execute(array("uvjet"=>$uvjet));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ); 
@@ -48,22 +45,15 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
   							?>
   							<tr>
   								<td data-label="Šifra"><?php echo $red->sifra; ?></td>
-  								<td data-label="Naziv društva"><?php echo $red->naziv; ?></td>
-  								<td data-label="OIB"><?php echo $red->oib; ?></td>
-  								<td data-label="Adresa"><?php echo $red->adresa; ?></td>
-  								<td data-label="Godina osnivanja"><?php echo $red->godina_osnivanja; ?></td>
+  								<td data-label="Ime i prezime"><?php echo $red->imePrezime; ?></td>
+  								<td data-label="Email"><?php echo $red->email; ?></td>
+  								<td data-label="Uloga"><?php echo $red->uloga; ?></td>
   								<td data-label="Akcija">
-  									<a href="drustvoPromjena.php?sifra=<?php echo $red->sifra; 
-  									if(isset($_GET["uvjet"])){
-  										echo "&uvjet=" . $_GET["uvjet"];
-  									}?>">Promjeni</a>
-  									<?php if($red->clan===0): ?>
-  									<a href="drustvoBrisanje.php?sifra=<?php echo $red->sifra; 
-  									if(isset($_GET["uvjet"])){
-  										echo"&uvjet=". $_GET["uvjet"];
-  									}?>">Obriši</a>
-  									<?php endif; ?>
-  								</td>
+									<a href="operaterPromjena.php?sifra=<?php echo $red->sifra;?>">Promjena podataka operatera</a></br>
+									<a href="operaterLozinka.php?sifra=<?php echo $red->sifra;?>">Promjena lozinke</a></br>
+									<a href="operaterBrisanje.php?sifra=<?php echo $red->sifra;?>">Obriši</a>
+								</td>
+  									
   							</tr>
   							<?php endforeach; ?>
   						</tbody>

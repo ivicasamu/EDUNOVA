@@ -2,7 +2,7 @@
 create database vatrogasci character set utf8;
 use vatrogasci;
 
-ALTER TABLE * CHARACTER SET utf8;
+#ALTER TABLE * CHARACTER SET utf8;
 
 create table operater(
 sifra 		int not null primary key auto_increment,
@@ -15,7 +15,7 @@ uloga		varchar(50) not null
 
 create table dvd(
 	sifra				int not null primary key auto_increment,
-	vzo					int not null,
+	vzo					varchar(100),
 	naziv				varchar(100),
 	oib					char(11) not null,
 	mb					varchar(20) not null,
@@ -102,14 +102,18 @@ alter table intervencija_vozilo add foreign key (intervencija) references interv
 alter table intervencija_vozilo add foreign key (vozilo) references vozilo(sifra);
 
 insert into dvd (vzo, naziv, oib, mb, ulica, mjesto, telefon, mail, web, godina_osnivanja) values
-('Đurđenovac','DVD Šaptinovci',12345678909,1212121212,'Josipa bana Jelačića bb','Šaptinovci','+385 31 608 050','dvd.saptinovci@gmail.com','www.dvd-saptinovci.hr',1931),
-('Đurđenovac','DVD Beljevina',98765432123,12121343434,'Zelena 45','Beljevina','+385 31 600 005','dvd.beljecina@gmail.com','www.dvd-beljevina.hr',1937),
-('Osijek','DVD Osijek',12123456789,3434121212,'Josipa Jurija Strossmayera 45','Osijek','+385 31 688 505','dvd.osijek@gmail.com','www.dvd-osijek.hr',1930);
+('VZO Đurđenovac','DVD Šaptinovci',12345678909,1212121212,'Josipa bana Jelačića bb','Šaptinovci','+385 31 608 050','dvd.saptinovci@gmail.com','www.dvd-saptinovci.hr',1931),
+('VZO Đurđenovac','DVD Beljevina',98765432123,12121343434,'Zelena 45','Beljevina','+385 31 600 005','dvd.beljecina@gmail.com','www.dvd-beljevina.hr',1937),
+('VZ Osijek','DVD Osijek',12123456789,3434121212,'Josipa Jurija Strossmayera 45','Osijek','+385 31 688 505','dvd.osijek@gmail.com','www.dvd-osijek.hr',1930);
 
 insert into clan (ime, prezime, oib, datum_rodenja,ulica, mjesto, telefon, mail, datum_uclanjenja, cin, funkcija) values 
 ('Đuro','Perić',12343456789, '1988-08-01','Šumska 23','Šaptinovci','+385 91 1234 567','duro.peric@gmail.com', '1996-01-01','Vatrogasac','Predsjednik'),
 ('Pero','Đurić',12345656789, '1978-07-12','Drumska 23','Beljevina','+385 95 1234 123','pero.duric@gmail.com', '1991-01-10','Vatrogasac 1. klase','Tajnik'),
 ('Šaro','Šarić',12345678789, '1978-05-07','Šumeđa 23','Osijek','+385 98 1234 321','saro.saris@gmail.com', '1998-08-12','Časnik','Zapovjednik');
+
+insert into operater (ime, prezime, email, lozinka, uloga) values 
+('Ivica', 'Šamu', 'ivica.samu@gmail.com', md5('ivica'),'admin'),
+('DVD', 'Šaptinovci', 'dvd.saptinovci@gmail.com', md5('dvd'),'korisnik');
 
 insert into dvd_clan(dvd, clan) values
 (1,1),

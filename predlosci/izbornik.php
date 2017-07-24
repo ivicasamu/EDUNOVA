@@ -17,7 +17,12 @@
 						<li><a href="#">VOZILA</a></li>
 					</ul>
 				</li>
-				<li><a href="#">INTERVENCIJE</a></li>
+				<li><a href="<?php echo $putanjaAPP ?>privatno/intervencije/intervencije.php">INTERVENCIJE</a></li>
+				<?php  
+					if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="admin"):
+				?>
+					<li><a href="<?php echo $putanjaAPP ?>privatno/operater/operater.php">OPERATERI</a></li>
+				<?php endif; ?>
 				<li><a href="#">KORISNI LINKOVI</a>
 					<ul class="vertical menu">
 					<li><a href="https://github.com/ivicasamu/EDUNOVA/tree/SummerProject01">GITHUB KOD</a></li>
@@ -26,6 +31,10 @@
 			</li>
 			<?php endif; ?>
 			<li><a href="<?php echo $putanjaAPP ?>javno/kontakt.php">KONTAKT</a></li>
+			<?php 
+         		 if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="korisnik"): ?>
+          	<li><a href="<?php echo $putanjaAPP;  ?>privatno/operater/operaterProfil.php">PROFIL OPERATERA</a></li>
+          	<?php endif; ?>
 			<li>
 				<?php if(!isset($_SESSION["logiran"])): ?>
 					<a href="<?php echo $putanjaAPP; ?>javno/prijava.php" class="button expanded">PRIJAVA</a>

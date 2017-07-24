@@ -34,7 +34,7 @@ if(isset($_POST["sifra"])){
   			<div class="large-6 medium-12 small-12 columns large-centered">
   				<form method="POST">
   					<fieldset class="fieldset">
-  						<legend>Izmjena podataka člana</legend>
+  						<legend>IZMJENA PODATAKA O ČLANU</legend>
   						
   						<label id="lime" for="ime">Ime</label>
   						<input 
@@ -61,7 +61,8 @@ if(isset($_POST["sifra"])){
   						name="oib" id="oib" type="number" value="<?php echo $entitet->oib; ?>" />
   						
   						<label id="datumRodenja" for="datumRodenja">Datum rođenja</label>
-  						<input name="datumRodenja" id="datumRodenja" type="datetime" value="<?php echo $entitet->datum_rodenja; ?>"/>
+  						<input name="datumRodenja" id="datumRodenja" type="datetime" placeholder="yyyy/mm/dd hh-mm"
+  						value="<?php echo $entitet->datum_rodenja; ?>"/>
   						
   						<label id="ulica" for="ulica">Ulica i broj</label>
   						<input name="ulica" id="ulica" type="text" value="<?php echo $entitet->ulica; ?>" />
@@ -76,7 +77,8 @@ if(isset($_POST["sifra"])){
   						<input name="mail" id="mail" type="email" value="<?php echo $entitet->mail; ?>" />
   						
   						<label id="datumUcljanjenja" for="datumUclanjenja">Datum učlanjenja</label>
-  						<input name="datumUclanjenja" id="datumUclanjenja" type="datetime" />
+  						<input name="datumUclanjenja" id="datumUclanjenja" type="datetime" placeholder="yyyy/mm/dd hh-mm"
+  						value="<?php echo $entitet->datum_uclanjenja; ?>"/>
   						
   						<label id="cin" for="cin">Čin u vatrogastvu</label>
   						<select id="cin" name="cin">
@@ -116,7 +118,7 @@ if(isset($_POST["sifra"])){
   						
   						<input type="submit" class="button" value="Promjeni" />
   						<input type="hidden" name="sifra" value="<?php echo $entitet->sifra ?>" />
-  						<a href="drustvo.php" class="alert button">Odustani</a>
+  						<a href="clan.php" class="alert button">Odustani</a>
   						</fieldset>
   				</form>	
   			</div>

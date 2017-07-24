@@ -34,7 +34,7 @@ if(isset($_POST["sifra"])){
   			<div class="large-6 medium-12 small-12 columns large-centered">
   				<form method="POST">
   					<fieldset class="fieldset">
-  						<legend>Unos podataka</legend>
+  						<legend>IZMJENA PODATAKA O DRUŠTVU</legend>
   						
   						<label id="lnaziv" for="naziv">Naziv</label>
   						<input 
@@ -74,7 +74,8 @@ if(isset($_POST["sifra"])){
   						<input name="web" id="web" value="<?php echo $entitet->web; ?>" type="text" />
   						
   						<label id="godinaOsnivanja" for="godinaOsnivanja">Godina osnivanja</label>
-  						<input name="godinaOsnivanja" id="godinaOsnivanja"value="<?php echo $entitet->godina_osnivanja; ?>" type="datetime" />
+  						<input name="godinaOsnivanja" id="godinaOsnivanja"value="<?php echo $entitet->godina_osnivanja; ?>" 
+  						type="datetime" placeholder="yyyy/mm/dd hh-mm" />
   						
   						<input type="submit" class="button" value="Promjeni" />
   						<input type="hidden" name="sifra" value="<?php echo $entitet->sifra ?>" />

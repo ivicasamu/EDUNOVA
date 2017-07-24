@@ -1,4 +1,10 @@
 <?php include_once '../konfiguracija.php' ?>
+<?php  
+	if(isset($_SESSION["logiran"])){
+		header("location:" .$GLOBALS["putanjaAPP"] . "privatno/nadzornaPloca.php");
+		exit;
+	}
+?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 	<head>
@@ -25,6 +31,10 @@
 							if(isset($_GET["odlogiranSi"])){
 								echo "Uspiješno ste se odjavili iz aplikacije!";
 							}
+							
+							if(isset($_GET["registracijaUspjesna"])){
+								echo "Uspješno ste se registirali!";
+							}
   							?>
   							<form method="post" action="<?php echo $putanjaAPP; ?>autorizacija.php">
   								<label for="korisnik">E-mail</label>
@@ -32,8 +42,9 @@
   								value="<?php echo isset($_GET["korisnik"]) ? $_GET["korisnik"] : ""; ?>" />
   								<label for="lozinka">Lozinka</label>
   								<input type="password" id="lozinka" name="lozinka" />
-  								<input type="submit" class="button expanded" value="Autoriziraj" />
+  								<input type="submit" class="button expanded" value="PRIJAVA" />
   							</form>
+  							<a href="<?php echo $putanjaAPP ?>privatno/operater/operaterUnos.php">Otvorite korisnički račun</a>
   						</div>	
   					</div>
   				</div>

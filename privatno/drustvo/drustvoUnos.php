@@ -39,7 +39,7 @@ if(isset($_POST["oib"])){
   			<div class="large-6 medium-12 small-12 columns large-centered">
   				<form method="POST">
   					<fieldset class="fieldset">
-  						<legend>Unos podataka</legend>
+  						<legend>UNOS NOVOG DRUŠTVA</legend>
   						
   						<label id="lnaziv" for="naziv">Naziv</label>
   						<input 
@@ -78,8 +78,8 @@ if(isset($_POST["oib"])){
   						<label id="web" for="web">Web adresa</label>
   						<input name="web" id="web" type="text" />
   						
-  						<label id="godinaOsnivanja" for="godinaOsnivanja">Godina osnivanja</label>
-  						<input name="godinaOsnivanja" id="godinaOsnivanja" type="date" />
+  						<label id="godinaOsnivanja" for="godinaOsnivanja">Datum osnivanja</label>
+  						<input name="godinaOsnivanja" id="godinaOsnivanja" type="datetime" placeholder="yyyy/mm/dd hh-mm" />
   						
   						<input type="submit" class="button" value="Dodaj" />
   						<a href="drustvo.php" class="alert button">Odustani</a>

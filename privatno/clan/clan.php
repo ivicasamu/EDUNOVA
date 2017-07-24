@@ -27,15 +27,19 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
   						<thead>
   							<tr>
   								<th>Šifra</th>
-  								<th>Ime</th>
-  								<th>Prezime</th>
+  								<th>Ime i prezime</th>
   								<th>OIB</th>
+  								<th>Adresa</th>
+  								<th>Datum rođenja</th>
+  								<th>Čin</th>
+  								<th>Funkcija</th>
   								<th>Akcija</th>
   							</tr>
   						</thead>
   						<tbody>
   							<?php  
-	  							$izraz = $veza->prepare("select  a.sifra, a.ime, a.prezime, a.oib, count(b.clan) as clan from clan a 
+	  							$izraz = $veza->prepare("select  a.sifra, concat(a.ime,' ', a.prezime) as imePrezime, a.oib, a.datum_rodenja, 
+	  							a.cin, a.funkcija, concat(a.mjesto,', ', a.ulica) as adresa, count(b.clan) as clan from clan a 
 	  							left join dvd_clan b on a. sifra=b.clan 
 	  							where a.ime like :uvjet 
 	  							group by a.sifra, a.ime, a.prezime;");
@@ -45,16 +49,19 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 								foreach ($rezultati as $red) :
   							?>
   							<tr>
-  								<td><?php echo $red->sifra; ?></td>
-  								<td><?php echo $red->ime; ?></td>
-  								<td><?php echo $red->prezime; ?></td>
-  								<td><?php echo $red->oib; ?></td>
-  								<td>
+  								<td data-label="Šifra"><?php echo $red->sifra; ?></td>
+  								<td data-label="Ime i prezime"><?php echo $red->imePrezime; ?></td>
+  								<td data-label="OIB"><?php echo $red->oib; ?></td>
+  								<td data-label="Adresa"><?php echo $red->adresa; ?></td>
+  								<td data-label="Datum rođenja"><?php echo $red->datum_rodenja; ?></td>
+  								<td data-label="Čin"><?php echo $red->cin; ?></td>
+  								<td data-label="Funkcija"><?php echo $red->funkcija; ?></td>
+  								<td data-label="Akcija">
   									<a href="clanPromjena.php?sifra=<?php echo $red->sifra; 
   									if(isset($_GET["uvjet"])){
   										echo "&uvjet=" . $_GET["uvjet"];
   									}?>">Promjeni</a>
-  									<?php if($red->clan===0): ?>
+  									<?php if($red->clan===0): ?>|
   									<a href="clanBrisanje.php?sifra=<?php echo $red->sifra; 
   									if(isset($_GET["uvjet"])){
   										echo"&uvjet=". $_GET["uvjet"];
