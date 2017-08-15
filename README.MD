@@ -1,4 +1,5 @@
-Za vrijeme ljetnih potrebno je napraviti novu aplikaciju koja se veže na moju bazu koju sam napravio (vatrogasci).
+Za vrijeme ljetnih potrebno je napraviti novu aplikaciju koja se veže na moju bazu koju sam napravio (vatrogasci). Aplikacija je napravljena koristeći Foundation Front-End Framework
+
 - stranica je podijeljena na javni i privatni dio
 - na javnom dijelu se vidi Login i Kontakt stranica
 - na kontakt stranicu dodana google mapa sa lokacijom
