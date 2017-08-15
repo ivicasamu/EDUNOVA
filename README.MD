@@ -1,4 +1,4 @@
-Za vrijeme ljetnih potrebno je napraviti novu aplikaciju koja se veže na moju bazu koju sam napravio (vatrogasci). Aplikacija je napravljena koristeći Bootstrap
+Za vrijeme ljetnih praznika potrebno je napraviti novu aplikaciju koja se veže na moju bazu koju sam napravio (vatrogasci). Aplikacija je napravljena koristeći Bootstrap
 
 - stranica je podijeljena na javni i privatni dio
 - na javnom dijelu se vidi Login i Kontakt stranica
