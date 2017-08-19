@@ -15,7 +15,7 @@
 						aria-expanded="false">MODULI</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
 						<a class="dropdown-item" href="#">DRUŠTVO</a>
-						<a class="dropdown-item" href="#">ČLANOVI</a>
+						<a class="dropdown-item" href="<?php echo $putanjaAPP ?>privatno/clan/clan.php">ČLANOVI</a>
 						<a class="dropdown-item" href="#">VOZILA</a>
 					</div>
 				</li>

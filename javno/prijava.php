@@ -39,9 +39,9 @@
 					<form method="post" class="form-signin" action="<?php echo $putanjaAPP; ?>autorizacija.php">
 						<label for="korisnik" class="sr-only">E-mail</label>
 						<input type="text" name="korisnik" id="korisnik" class="form-control" 
-							value="<?php echo isset($_GET["korisnik"]) ? $_GET["korisnik"] : ""; ?>">
+							value="<?php echo isset($_GET["korisnik"]) ? $_GET["korisnik"] : ""; ?>" placeholder="E-mail">
 						<label for="lozinka" class="sr-only">Lozinka</label>
-						<input type="password" name="lozinka" id="lozinka" class="form-control">
+						<input type="password" name="lozinka" id="lozinka" class="form-control" placeholder="lozinka">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 							PRIJAVA
 						</button>
