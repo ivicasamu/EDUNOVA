@@ -1,6 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
-$uvjet = isset($_GET["uvjet"])? $_GET["uvjet"] : "";
+$uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,38 +22,30 @@ $uvjet = isset($_GET["uvjet"])? $_GET["uvjet"] : "";
       						</span>
       					</div>
       					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-      						<a href="clanUnos.php" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">DODAJ NOVOG ČLANA</a>
+      						<a href="drustvoUnos.php" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">DODAJ NOVO DRUŠTVO</a>
       					</div>
       				</form>
       			</div>
       		</div>
-      		
-      			
-      				
-      				
-      				
-      			
       		</form>
       		<table class="table table-bordered">
       			<thead>
 				    <tr>
 				      	<th>Šifra</th>
-  						<th>Ime i prezime</th>
+  						<th>Naziv društva</th>
   						<th>OIB</th>
   						<th>Adresa</th>
-  						<th>Datum rođenja</th>
-  						<th>Čin</th>
-						<th>Funkcija</th>
+  						<th>Godina osnivanja</th>
   						<th>Akcija</th>
 				    </tr>
 				</thead>
 				<tbody>
 					<?php  
-	  					$izraz = $veza->prepare("select  a.sifra, concat(a.ime,' ', a.prezime) as imePrezime, a.oib, a.datum_rodenja, 
-	  					a.cin, a.funkcija, concat(a.mjesto,', ', a.ulica) as adresa, count(b.clan) as clan from clan a 
-	  					left join dvd_clan b on a. sifra=b.clan 
-	  					where a.ime like :uvjet 
-	  					group by a.sifra, a.ime, a.prezime;");
+	  					$izraz = $veza->prepare("select  a.sifra, a.naziv, a.oib, concat(a.mjesto,', ',a.ulica) as adresa, a.godina_osnivanja, 
+	  					count(b.clan) as clan, count(b.dvd) as vozilo
+	  					from dvd a left join dvd_clan b on a. sifra=b.dvd
+	  					where a.naziv like :uvjet 
+	  					group by a.sifra, a.naziv");
 						$uvjet="%" . $uvjet . "%";
 						$izraz -> execute(array("uvjet"=>$uvjet));
 						$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ); 
@@ -61,24 +53,22 @@ $uvjet = isset($_GET["uvjet"])? $_GET["uvjet"] : "";
   					?>
   						<tr>
   							<td data-label="Šifra"><?php echo $red->sifra; ?></td>
-  							<td data-label="Ime i prezime"><?php echo $red->imePrezime; ?></td>
+  							<td data-label="Naziv društva"><?php echo $red->naziv; ?></td>
   							<td data-label="OIB"><?php echo $red->oib; ?></td>
   							<td data-label="Adresa"><?php echo $red->adresa; ?></td>
-  							<td data-label="Datum rođenja"><?php echo $red->datum_rodenja; ?></td>
-  							<td data-label="Čin"><?php echo $red->cin; ?></td>
-  							<td data-label="Funkcija"><?php echo $red->funkcija; ?></td>
+  							<td data-label="Godina osnivanja"><?php echo $red->godina_osnivanja; ?></td>
   							<td data-label="Akcija">
-  								<a href="clanPromjena.php?sifra=<?php echo $red->sifra; 
+  								<a href="drustvoPromjena.php?sifra=<?php echo $red->sifra; 
   								if(isset($_GET["uvjet"])){
   									echo "&uvjet=" . $_GET["uvjet"];
   								}?>" class="badge badge-success">Promjeni</a>
   								<?php if($red->clan===0): ?>
-  								<a href="clanBrisanje.php?sifra=<?php echo $red->sifra; 
- 								if(isset($_GET["uvjet"])){
+  								<a href="drustvoBrisanje.php?sifra=<?php echo $red->sifra; 
+  								if(isset($_GET["uvjet"])){
   									echo"&uvjet=". $_GET["uvjet"];
   								}?>" class="badge badge-danger">Obriši</a>
   								<?php endif; ?>
-  							</td>
+  								</td>
   						</tr>
   						<?php endforeach; ?>				
 				</tbody>

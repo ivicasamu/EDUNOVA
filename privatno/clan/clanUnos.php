@@ -52,18 +52,19 @@ if(isset($_POST["oib"])){
       			<div class="row">
       				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
       					<form method="post">
+      						<legend>UNOS NOVOG ČLANA</legend>
 							<div class="form-group">
-						    	<label id="lime" for="ime">Ime</label>
+						    	<label id="lime" for="ime">*Ime</label>
   								<input <?php if(isset($greske["ime"])){echo " style=\"background-color: #f7e4e1\" ";}?>
   								name="ime" id="ime" type="text" class="form-control" />
 						  	</div>
 						  	<div class="form-group">
-							  	<label id="lprezime" for="prezime">Prezime</label>
+							  	<label id="lprezime" for="prezime">*Prezime</label>
 	  							<input <?php if(isset($greske["prezime"])){echo " style=\"background-color: #f7e4e1\" ";}?>
 	  							name="prezime" id="prezime" type="text" class="form-control" />
 							</div>
 							<div class="form-group">
-							  	<label id="loib" for="oib">OIB</label>
+							  	<label id="loib" for="oib">*OIB</label>
 	  							<input <?php if(isset($greske["oib"])){echo " style=\"background-color: #f7e4e1\" ";}?>
 	  							name="oib" id="oib" type="number" class="form-control" />
 							</div>
@@ -120,8 +121,9 @@ if(isset($_POST["oib"])){
 		  							<option value="Član nadzornog odbora">Član nadzornog odbora</option>
 		  						</select>
 							</div>
-						  <button type="submit" class="btn btn-primary">Dodaj</button>
-						  <a href="clan.php" class="btn btn-danger">Odustani</a>
+							<h6>*Obavezan unos</h6>
+						 	<button type="submit" class="btn btn-primary">Dodaj</button>
+						  	<a href="clan.php" class="btn btn-danger">Odustani</a>
   							<?php if(isset($unioRedova) && $unioRedova>0): ?>
   							<h1 id="unio" class="btn btn-success">Zapis uspješno pohranjen</h1>
   						<?php endif; ?>

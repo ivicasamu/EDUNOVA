@@ -14,17 +14,17 @@
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" 
 						aria-expanded="false">MODULI</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="#">DRUŠTVO</a>
+						<a class="dropdown-item" href="<?php echo $putanjaAPP ?>privatno/drustvo/drustvo.php">DRUŠTVO</a>
 						<a class="dropdown-item" href="<?php echo $putanjaAPP ?>privatno/clan/clan.php">ČLANOVI</a>
 						<a class="dropdown-item" href="#">VOZILA</a>
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">INTERVENCIJE</a>
+					<a class="nav-link" href="<?php echo $putanjaAPP ?>privatno/intervencije/intervencije.php">INTERVENCIJE</a>
 				</li>
-				<?php if(isset($_SESSION["logiran"])  && $_SESSION["logiran"]->uloga==="admin"): ?>
+				<?php if(isset($_SESSION["logiran"])  && $_SESSION["logiran"]->uloga==="Administrator"): ?>
 					<li class="nav-item">
-						<a class="nav-link" href="#">OPERATERI</a>
+						<a class="nav-link" href="<?php echo $putanjaAPP ?>privatno/operater/operater.php">OPERATERI</a>
 					</li>
 				<?php endif; ?>
 				<li class="nav-item dropdown">
@@ -39,9 +39,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo $putanjaAPP; ?>javno/kontakt.php">KONTAKT</a>
 			</li>
-			<?php if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="korisnik"): ?>
+			<?php if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="Korisnik"): ?>
 				<li class="nav-item">
-					<a class="nav-link" href="#">PROFIL OPERATERA</a>
+					<a class="nav-link" href="<?php echo $putanjaAPP ?>privatno/operater/operaterProfil.php">PROFIL OPERATERA</a>
 				</li>
 			<?php endif; ?>
 		</ul>

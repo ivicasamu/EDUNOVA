@@ -38,6 +38,7 @@ if(isset($_POST["sifra"])){
       			<div class="row">
       				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
       					<form method="post">
+      						<legend>PROMJENA PODATAKA ČLANA</legend>
 							<div class="form-group">
 						    	<label id="lime" for="ime">Ime</label>
   								<input <?php if(isset($greske["ime"])){echo " style=\"background-color: #f7e4e1\" ";}?>
