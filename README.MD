@@ -7,4 +7,8 @@ Za vrijeme ljetnih praznika potrebno je napraviti novu aplikaciju koja se veže 
 - napravljen je URL rewrite za dvije favicon datoteke, te je da kada se pokrene index.php aplikacija se preusmjerav na login stranicu
 - dodani su meta podaci
 - dodan program član (omogucava CRUD)
+- dodan program društvo (omogucava CRUD)
+- dodan program intervencije (omogucava CRUD)
+- dodan program operater (omogucava CRUD)
+- omogucena registracija novog korisnika
 
