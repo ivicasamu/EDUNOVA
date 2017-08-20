@@ -33,35 +33,36 @@ if(isset($_POST["datumDojave"])){
   						<label id="vrstaIntervencije" for="vrstaIntervencije">Vrsta intervencije</label>
   						<select id="vrstaIntervencije" name="vrstaIntervencije">
   							<option value="" selected="selected"></option>
-  							<option value="pozarna">Požarna intervencija</option>
-  							<option value="tehnicka">Tehnička intervencija</option>
-  							<option value="ostale">Ostale intervencije</option>
-  							<option value="druge">Druge aktivnosti</option>
+		  					<option value="Požarna intervencija">Požarna intervencija</option>
+		  					<option value="Tehnička intervencija">Tehnička intervencija</option>
+		  					<option value="Ostale intervencije">Ostale intervencije</option>
+							<option value="Druge aktivnosti">Druge aktivnosti</option>
   						</select>
   						
   						<label id="podVrstaIntervencije" for="podVrstaIntervencije">Podvrsta intervencije</label>
   						<select id="podVrstaIntervencije" name="podVrstaIntervencije">
-  								<option value="" selected="selected"></option>
-	  							<option value="stambenog">Požar stambenog objekta</option>
-	  							<option value="poslovnog">Požar poslovnog objekta</option>
-	  							<option value="javna">Požar objekta javne namjene</option>
-	  							<option value="gospodarski">Požar gospodarskog objekta</option>
-	  							<option value="komunalni">Požr objekta komunalne namjene</option>
-	  							<option value="prometnog">Požar prometnog sredstva</option>
-	  							<option value="otvoreni">Požar na otvorenom prostoru</option>
-	  							<option value="dimnjaka">Požar dimnjaka</option>
-	  							<option value="eksplozijePozar">Eksplozije</option>
-	  							<option value="ostalePozar">Ostale požarne intervencije</option>
-	  							<option value="nezgode">Nezgode u prometu</option>
-	  							<option value="visine">Spašavanje s visine i dubine</option>
-	  							<option value="potraga">Potraga za nestalom osobom</option>
-	  							<option value="spasavanje">Spašavanje na?pod vodom</option>
-	  							<option value="poplave">Radovi na vodi i zaštita od poplava</option>
-	  							<option value="rusevine">Spašavanje iz ruševina</option>
-	  							<option value="objekti">Tehničke intervencije u objektu</option>
-	  							<option value="opasne">Intervencija s opasnim tvarima</option>
-	  							<option value="eksplozijeTehnicke">Ekslopzije</option>
-	  							<option value="ostaleTehnicke">Ostale tehničke intervencije</option>
+  							<option value="" selected="selected"></option>
+			  				<option value="" selected="selected"></option>
+			  				<option value="Požar stambenog objekta">Požar stambenog objekta</option>
+			  				<option value="Požar poslovnog objekta">Požar poslovnog objekta</option>
+			  				<option value="Požar objekta javne namjene">Požar objekta javne namjene</option>
+			  				<option value="Požar gospodarskog objekta">Požar gospodarskog objekta</option>
+			  				<option value="Požar objekta komunalne namjene">Požar objekta komunalne namjene</option>
+			  				<option value="Požar prometnog sredstva">Požar prometnog sredstva</option>
+			  				<option value="Požar na otvorenom prostoru">Požar na otvorenom prostoru</option>
+			  				<option value="Požar na otvorenom prostoru">Požar dimnjaka</option>
+							<option value="Eksplozije">Eksplozije</option>
+		  					<option value="Ostale požarne intervencije">Ostale požarne intervencije</option>
+							<option value="Nezgode u prometu">Nezgode u prometu</option>
+			  				<option value="Spašavanje s visine i dubine">Spašavanje s visine i dubine</option>
+			  				<option value="Potraga za nestalom osobom">Potraga za nestalom osobom</option>
+			  				<option value="Spašavanje na/pod vodom">Spašavanje na/pod vodom</option>
+			  				<option value="Radovi na vodi i zaštita od poplava">Radovi na vodi i zaštita od poplava</option>
+			  				<option value="Spašavanje iz ruševina">Spašavanje iz ruševina</option>
+			  				<option value="Tehničke intervencije u objektu">Tehničke intervencije u objektu</option>
+							<option value="Intervencija s opasnim tvarima">Intervencija s opasnim tvarima</option>
+		  					<option value="Ekslopzije">Ekslopzije</option>
+		  					<option value="Ostale tehničke intervencije">Ostale tehničke intervencije</option>
   						</select>
   						
   						<label id="datumNastanka" for="datumNastanka">Datum nastanka</label>

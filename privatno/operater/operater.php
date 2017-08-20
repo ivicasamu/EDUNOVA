@@ -1,6 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
-provjeraUloga("admin");
+provjeraUloga("Administrator");
 $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 ?>
 <!doctype html>

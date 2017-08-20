@@ -1,6 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
-provjeraUloga("admin");
+provjeraUloga("Administrator");
 
 if(isset($_GET["sifra"])){
 	$izraz=$veza->prepare("select * from operater where sifra=:sifra");
@@ -41,8 +41,10 @@ if(isset($_POST["sifra"])){
   						
 						<label for="uloga">Uloga</label>
 						<select id="uloga" name="uloga">
-							<option value="korisnik" <?php echo ($entitet->uloga=="korisnik") ? " selected=\"selected\" " : "";	?>>Korisnik</option>
-							<option value="admin" <?php echo ($entitet->uloga=="admin") ? " selected=\"selected\" " : "";	?>>Administrator</option>
+							<option value="Korisnik" <?php echo ($entitet->uloga=="Korisnik") ? " selected=\"selected\" " : "";	?>>
+								Korisnik</option>
+							<option value="Administrator" <?php echo ($entitet->uloga=="Administrator") ? " selected=\"selected\" " : "";	?>>
+								Administrator</option>
 						</select>
   						
   						

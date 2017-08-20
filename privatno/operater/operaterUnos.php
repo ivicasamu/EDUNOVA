@@ -44,8 +44,8 @@ if(isset($_POST["email"])){
 						<?php if(isset($_SESSION["logiran"])): ?>
 						<label for="uloga">Uloga</label>
 						<select id="uloga" name="uloga">
-							<option value="korisnik" selected="selected">Korisnik</option>
-							<option value="admin">Administrator</option>
+							<option value="Korisnik" selected="selected">Korisnik</option>
+							<option value="Administrator">Administrator</option>
 						</select>
   						<?php endif; ?>
   						

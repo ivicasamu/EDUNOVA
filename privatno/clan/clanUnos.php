@@ -95,27 +95,27 @@ if(isset($_POST["oib"])){
   						
   						<label id="cin" for="cin">Čin u vatrogastvu</label>
   						<select id="cin" name="cin">
-  							<option value="nemaCin"selected="selected">Nema čin</option>
-  							<option value="vatrogasac">Vatrogasac</option>
-  							<option value="vatrogasacKlase">Vatrogasac 1.klase</option>
-  							<option value="docasnik">Dočasnik</option>
-  							<option value="docasnikKlase">Dočasnik 1. klase</option>
-  							<option value="casnik">Časnik</option>
-  							<option value="casnikKlase">Časnik 1. klase</option>
+  							<option value="Nema čin"selected="selected">Nema čin</option>
+		  					<option value="Vatrogasac">Vatrogasac</option>
+		  					<option value="Vatrogasac 1.klase">Vatrogasac 1.klase</option>
+		  					<option value="Dočasnik">Dočasnik</option>
+		  					<option value="Dočasnik 1. klase">Dočasnik 1. klase</option>
+		  					<option value="Časnik">Časnik</option>
+		  					<option value="Časnik 1. klase">Časnik 1. klase</option>
   						</select>
   						
   						<label id="funkcija" for="funkcija">Funkcija u vatrogastvu</label>
   						<select id="funkcija" name="funkcija">
-  							<option value="clan" selected="selected">Član društva</option>
-  							<option value="predsjednik">Predsjednik društva</option>
-  							<option value="zamjenikPredsjednika">Zamjenik predsjednika društva</option>
-  							<option value="tajnik">Tajnik društva</option>
-  							<option value="blagajnik">Blagajnik društva</option>
-  							<option value="clanUO">Član upravnog odbora</option>
-  							<option value="zapovjednik">Zapovjednik društva</option>
-  							<option value="zamjenikZapovjednika">Zamjenik zapovjednika društva</option>
-  							<option value="clanZapovjednistva">Član zapovjedništva</option>
-  							<option value="članNO">Član nadzornog odbora</option>
+  							<option value="Član društva" selected="selected">Član društva</option>
+		  					<option value="Predsjednik društva">Predsjednik društva</option>
+		  					<option value="Zamjenik predsjednika društva">Zamjenik predsjednika društva</option>
+		  					<option value="Tajnik društva">Tajnik društva</option>
+		  					<option value="Blagajnik društva">Blagajnik društva</option>
+		  					<option value="Član upravnog odbora">Član upravnog odbora</option>
+							<option value="Zapovjednik društva">Zapovjednik društva</option>
+		  					<option value="Zamjenik zapovjednika društva">Zamjenik zapovjednika društva</option>
+		  					<option value="Član zapovjedništva">Član zapovjedništva</option>
+		  					<option value="Član nadzornog odbora">Član nadzornog odbora</option>
   						</select>
   						
   						<input type="submit" class="button" value="Dodaj člana" />

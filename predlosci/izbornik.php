@@ -19,7 +19,7 @@
 				</li>
 				<li><a href="<?php echo $putanjaAPP ?>privatno/intervencije/intervencije.php">INTERVENCIJE</a></li>
 				<?php  
-					if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="admin"):
+					if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="Administrator"):
 				?>
 					<li><a href="<?php echo $putanjaAPP ?>privatno/operater/operater.php">OPERATERI</a></li>
 				<?php endif; ?>
@@ -32,7 +32,7 @@
 			<?php endif; ?>
 			<li><a href="<?php echo $putanjaAPP ?>javno/kontakt.php">KONTAKT</a></li>
 			<?php 
-         		 if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="korisnik"): ?>
+         		 if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="Korisnik"): ?>
           	<li><a href="<?php echo $putanjaAPP;  ?>privatno/operater/operaterProfil.php">PROFIL OPERATERA</a></li>
           	<?php endif; ?>
 			<li>

@@ -82,38 +82,43 @@ if(isset($_POST["sifra"])){
   						
   						<label id="cin" for="cin">Čin u vatrogastvu</label>
   						<select id="cin" name="cin">
-  							<option value="nemaCin" <?php echo ($entitet->cin=="nemaCin") ? " selected=\"selected\" " : "";	?>>Nema čin</option>
-  							<option value="vatrogasac" <?php echo ($entitet->cin=="vatrogasac") ? " selected=\"selected\" " : "";	?>>Vatrogasac</option>
-  							<option value="vatrogasacKlase"<?php echo ($entitet->cin=="vatrogasacKlase") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Nema čin" <?php echo ($entitet->cin=="Nema čin") ? " selected=\"selected\" " : "";	?>>
+		  						Nema čin</option>
+  							<option value="Vatrogasac" <?php echo ($entitet->cin=="Vatrogasac") ? " selected=\"selected\" " : "";	?>>
+  								Vatrogasac</option>
+  							<option value="Vatrogasac 1.klase"<?php echo ($entitet->cin=="Vatrogasac 1.klase") ? " selected=\"selected\" " : "";?>>
   								Vatrogasac 1.klase</option>
-  							<option value="docasnik" <?php echo ($entitet->cin=="docasnik") ? " selected=\"selected\" " : "";	?>>Dočasnik</option>
-  							<option value="docasnikKlase" <?php echo ($entitet->cin=="docasnikKlase") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Dočasnik" <?php echo ($entitet->cin=="Dočasnik") ? " selected=\"selected\" " : "";	?>>
+  								Dočasnik</option>
+  							<option value="Dočasnik 1. klase" <?php echo ($entitet->cin=="Dočasnik 1. klase") ? " selected=\"selected\" " : "";	?>>
   								Dočasnik 1. klase</option>
-  							<option value="casnik" <?php echo ($entitet->cin=="casnik") ? " selected=\"selected\" " : "";	?>>Časnik</option>
-  							<option value="casnikKlase" <?php echo ($entitet->cin=="casnikKlase") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Časnik" <?php echo ($entitet->cin=="Časnik") ? " selected=\"selected\" " : "";	?>>Časnik</option>
+  							<option value="Časnik 1. klase" <?php echo ($entitet->cin=="Časnik 1. klase") ? " selected=\"selected\" " : "";	?>>
   								Časnik 1. klase</option>
   						</select>
   						
   						<label id="funkcija" for="funkcija">Funkcija u vatrogastvu</label>
   						<select id="funkcija" name="funkcija">
-  							<option value="clan" <?php echo ($entitet->funkcija=="clan") ? " selected=\"selected\" " : "";	?>>Član društva</option>
+  							<option value="Član društva" <?php echo ($entitet->funkcija=="Član društva") ? " selected=\"selected\" " : "";	?>>
+		  						Član društva</option>
   							<option value="predsjednik" <?php echo ($entitet->funkcija=="predsjednik") ? " selected=\"selected\" " : ""; ?>>
   								Predsjednik društva</option>
-  							<option value="zamjenikPredsjednika" <?php echo ($entitet->funkcija=="zamjenikPredsjednika") ? " 
-  							selected=\"selected\" " : "";	?>>Zamjenik predsjednika društva</option>
-  							<option value="tajnik" <?php echo ($entitet->funkcija=="tajnik") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Zamjenik predsjednika društva" <?php echo ($entitet->funkcija=="Zamjenik predsjednika društva") ? 
+  								"selected=\"selected\" " : "";	?>>Zamjenik predsjednika društva</option>
+  							<option value="Tajnik društva" <?php echo ($entitet->funkcija=="Tajnik društva") ? " selected=\"selected\" " : "";	?>>
   								Tajnik društva</option>
-  							<option value="blagajnik" <?php echo ($entitet->funkcija=="blagajnik") ? " selected=\"selected\" " : ""; ?>>
+  							<option value="Blagajnik društva" <?php echo ($entitet->funkcija=="Blagajnik društva") ? " selected=\"selected\" " : ""; ?>>
   								Blagajnik društva</option>
-  							<option value="clanUO" <?php echo ($entitet->funkcija=="clanUO") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Član upravnog odbora" <?php echo ($entitet->funkcija=="Član upravnog odbora") ? " selected=\"selected\" " : "";	?>>
   								Član upravnog odbora</option>
-  							<option value="zapovjednik"<?php echo ($entitet->funkcija=="zapovjednik") ? " selected=\"selected\" " : "";	?>>
+  							<option value="Zapovjednik društva"<?php echo ($entitet->funkcija=="Zapovjednik društva") ? " selected=\"selected\" " : "";	?>>
   								Zapovjednik društva</option>
-  							<option value="zamjenikZapovjednika"<?php echo ($entitet->funkcija=="zamjenikZapovjednika") ? " 
-  							selected=\"selected\" " : "";	?>>Zamjenik zapovjednika društva</option>
-  							<option value="clanZapovjednistva" <?php echo ($entitet->funkcija=="clanZapovjednistva") ? " 
-  							selected=\"selected\" " : ""; ?>>Član zapovjedništva</option>
-  							<option value="članNO" <?php echo ($entitet->funkcija=="clanNO") ? " selected=\"selected\" " : "";	?>>Član nadzornog odbora</option>
+  							<option value="Zamjenik zapovjednika društva"<?php echo ($entitet->funkcija=="Zamjenik zapovjednika društva") ? 
+  								"selected=\"selected\" " : "";	?>>Zamjenik zapovjednika društva</option>
+  							<option value="Član zapovjedništva" <?php echo ($entitet->funkcija=="Član zapovjedništva") ? 
+  								"selected=\"selected\" " : ""; ?>>Član zapovjedništva</option>
+  							<option value="Član nadzornog odbora" <?php echo ($entitet->funkcija=="Član nadzornog odbora") ? " selected=\"selected\" " : "";	?>>
+  								Član nadzornog odbora</option>
   						</select>
   						
   						<input type="submit" class="button" value="Promjeni" />

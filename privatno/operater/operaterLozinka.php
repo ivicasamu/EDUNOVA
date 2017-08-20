@@ -1,6 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
-provjeraUloga("admin");
+provjeraUloga("Administrator");
 
 if(isset($_POST["sifra"])){
 	$izraz=$veza->prepare("update operater set lozinka=md5(:lozinka) where sifra=:sifra");

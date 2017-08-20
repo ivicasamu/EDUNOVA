@@ -1,6 +1,6 @@
 <?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
-provjeraUloga("korisnik");
+provjeraUloga("Korisnik");
 
 $izraz=$veza->prepare("select * from operater where sifra=:sifra");
 $izraz->execute(array("sifra"=>$_SESSION["logiran"]->sifra));

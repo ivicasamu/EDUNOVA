@@ -40,34 +40,58 @@ if(isset($_POST["sifra"])){
   						<label id="vrstaIntervencije" for="vrstaIntervencije">Vrsta intervencije</label>
   						<select id="vrstaIntervencije" name="vrstaIntervencije">
   					
-  							<option value="pozarna" <?php echo ($entitet->vrsta_intervencije==="pozarna") ? " selected=\"selected\" " : ""; ?>>Požarna intervencija</option>
-  							<option value="tehnicka" <?php echo ($entitet->vrsta_intervencije==="tehnicka") ? " selected=\"selected\" " : ""; ?>>Tehnička intervencija</option>
-  							<option value="ostale" <?php echo ($entitet->vrsta_intervencije==="ostale") ? " selected=\"selected\" " : ""; ?>>Ostale intervencije</option>
-  							<option value="druge" <?php echo ($entitet->vrsta_intervencije==="druge") ? " selected=\"selected\" " : ""; ?>>Druge aktivnosti</option>
+  							<option value="Požarna intervencija" <?php echo ($entitet->vrsta_intervencije==="Požarna intervencija") ? " 
+		  						selected=\"selected\" " : ""; ?>>Požarna intervencija</option>
+		  					<option value="Tehnička intervencija" <?php echo ($entitet->vrsta_intervencije==="Tehnička intervencija") ? " 
+		  						selected=\"selected\" " : ""; ?>>Tehnička intervencija</option>
+		  					<option value="Ostale intervencije" <?php echo ($entitet->vrsta_intervencije==="Ostale intervencije") ? " 
+		  						selected=\"selected\" " : ""; ?>>Ostale intervencije</option>
+		  					<option value="Druge aktivnosti" <?php echo ($entitet->vrsta_intervencije==="Druge aktivnosti") ? " 
+		  						selected=\"selected\" " : ""; ?>>Druge aktivnosti</option>
   						</select>
   						
   						<label id="podVrstaIntervencije" for="podVrstaIntervencije">Podvrsta intervencije</label>
   						<select id="podVrstaIntervencije" name="podVrstaIntervencije">
-	  							<option value="stambenog" <?php echo ($entitet->podvrsta_intervencije==="stambenog") ? " selected=\"selected\" " : ""; ?>>Požar stambenog objekta</option>
-	  							<option value="poslovnog"<?php echo ($entitet->podvrsta_intervencije==="poslovnog") ? " selected=\"selected\" " : ""; ?>>Požar poslovnog objekta</option>
-	  							<option value="javna"<?php echo ($entitet->podvrsta_intervencije==="javna") ? " selected=\"selected\" " : ""; ?>>Požar objekta javne namjene</option>
-	  							<option value="gospodarski"<?php echo ($entitet->podvrsta_intervencije==="gospodarski") ? " selected=\"selected\" " : ""; ?>>Požar gospodarskog objekta</option>
-	  							<option value="komunalni"<?php echo ($entitet->podvrsta_intervencije==="komunalni") ? " selected=\"selected\" " : ""; ?>>Požar objekta komunalne namjene</option>
-	  							<option value="prometnog"<?php echo ($entitet->podvrsta_intervencije==="prometnog") ? " selected=\"selected\" " : ""; ?>>Požar prometnog sredstva</option>
-	  							<option value="otvoreni"<?php echo ($entitet->podvrsta_intervencije==="otvoreni") ? " selected=\"selected\" " : ""; ?>>Požar na otvorenom prostoru</option>
-	  							<option value="dimnjak"<?php echo ($entitet->podvrsta_intervencije==="dimnjak") ? " selected=\"selected\" " : ""; ?>>Požar dimnjaka</option>
-	  							<option value="eksplozijaPozar"<?php echo ($entitet->podvrsta_intervencije==="eksplozijaPozar") ? " selected=\"selected\" " : ""; ?>>Eksplozije</option>
-	  							<option value="ostalePozar"<?php echo ($entitet->podvrsta_intervencije==="ostalePozar") ? " selected=\"selected\" " : ""; ?>>Ostale požarne intervencije</option>
-	  							<option value="nezgode"<?php echo ($entitet->podvrsta_intervencije==="nezgode") ? " selected=\"selected\" " : ""; ?>>Nezgode u prometu</option>
-	  							<option value="visine"<?php echo ($entitet->podvrsta_intervencije==="visine") ? " selected=\"selected\" " : ""; ?>>Spašavanje s visine i dubine</option>
-	  							<option value="potraga"<?php echo ($entitet->podvrsta_intervencije==="potraga") ? " selected=\"selected\" " : ""; ?>>Potraga za nestalom osobom</option>
-	  							<option value="spasavanje"<?php echo ($entitet->podvrsta_intervencije==="spasavanje") ? " selected=\"selected\" " : ""; ?>>Spašavanje na?pod vodom</option>
-	  							<option value="poplave"<?php echo ($entitet->podvrsta_intervencije==="poplave") ? " selected=\"selected\" " : ""; ?>>Radovi na vodi i zaštita od poplava</option>
-	  							<option value="rusevine"<?php echo ($entitet->podvrsta_intervencije==="rusevine") ? " selected=\"selected\" " : ""; ?>>Spašavanje iz ruševina</option>
-	  							<option value="objekti"<?php echo ($entitet->podvrsta_intervencije==="objekti") ? " selected=\"selected\" " : ""; ?>>Tehničke intervencije u objektu</option>
-	  							<option value="opasne"<?php echo ($entitet->podvrsta_intervencije==="opasne") ? " selected=\"selected\" " : ""; ?>>Intervencija s opasnim tvarima</option>
-	  							<option value="eksplozijaTehnicka"<?php echo ($entitet->podvrsta_intervencije==="eksplozijaTehnicka") ? " selected=\"selected\" " : ""; ?>>Ekslopzije</option>
-	  							<option value="ostaleTehnicka"<?php echo ($entitet->podvrsta_intervencije==="ostaleTehnicka") ? " selected=\"selected\" " : ""; ?>>Ostale tehničke intervencije</option>
+	  							<option value="Požar stambenog objekta" <?php echo ($entitet->podvrsta_intervencije==="Požar stambenog objekta") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar stambenog objekta</option>
+			  						<option value="Požar poslovnog objekta" <?php echo ($entitet->podvrsta_intervencije==="Požar poslovnog objekta") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar poslovnog objekta</option>
+			  						<option value="Požar objekta javne namjene" <?php echo ($entitet->podvrsta_intervencije==="Požar objekta javne namjene") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar objekta javne namjene</option>
+			  						<option value="Požar gospodarskog objekta" <?php echo ($entitet->podvrsta_intervencije==="Požar gospodarskog objekta") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar gospodarskog objekta</option>
+			  						<option value="Požar objekta komunalne namjene" <?php echo ($entitet->podvrsta_intervencije==="Požar objekta komunalne namjene") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar objekta komunalne namjene</option>
+			  						<option value="Požar prometnog sredstva" <?php echo ($entitet->podvrsta_intervencije==="Požar prometnog sredstva") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar prometnog sredstva</option>
+			  						<option value="Požar na otvorenom prostoru" <?php echo ($entitet->podvrsta_intervencije==="Požar na otvorenom prostoru") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar na otvorenom prostoru</option>
+			  						<option value="Požar na otvorenom prostoru" <?php echo ($entitet->podvrsta_intervencije==="Požar dimnjaka") ? " 
+			  							selected=\"selected\" " : ""; ?>>Požar dimnjaka</option>
+									<option value="Eksplozije" <?php echo ($entitet->podvrsta_intervencije==="Eksplozije") ? " 
+										selected=\"selected\" " : ""; ?>>Eksplozije</option>
+		  							<option value="Ostale požarne intervencije"<?php echo ($entitet->podvrsta_intervencije==="Ostale požarne intervencije") ? " 
+		  								selected=\"selected\" " : ""; ?>>Ostale požarne intervencije</option>
+		  							<option value="Nezgode u prometu" <?php echo ($entitet->podvrsta_intervencije==="Nezgode u prometu") ? " 
+		  								selected=\"selected\" " : ""; ?>>Nezgode u prometu</option>
+			  						<option value="Spašavanje s visine i dubine" <?php echo ($entitet->podvrsta_intervencije==="Spašavanje s visine i dubine") ? " 
+			  							selected=\"selected\" " : ""; ?>>Spašavanje s visine i dubine</option>
+			  						<option value="Potraga za nestalom osobom" <?php echo ($entitet->podvrsta_intervencije==="Potraga za nestalom osobom") ? " 
+			  							selected=\"selected\" " : ""; ?>>Potraga za nestalom osobom</option>
+			  						<option value="Spašavanje na/pod vodom" <?php echo ($entitet->podvrsta_intervencije==="Spašavanje na/pod vodom") ? " 
+			  							selected=\"selected\" " : ""; ?>>Spašavanje na/pod vodom</option>
+			  						<option value="Radovi na vodi i zaštita od poplava" <?php echo ($entitet->podvrsta_intervencije==="Radovi na vodi i zaštita od poplava") ? " 
+			  							selected=\"selected\" " : ""; ?>>Radovi na vodi i zaštita od poplava</option>
+			  						<option value="Spašavanje iz ruševina" <?php echo ($entitet->podvrsta_intervencije==="Spašavanje iz ruševina") ? " 
+			  							selected=\"selected\" " : ""; ?>>Spašavanje iz ruševina</option>
+			  						<option value="Tehničke intervencije u objektu" <?php echo ($entitet->podvrsta_intervencije==="Tehničke intervencije u objektu") ? " 
+			  							selected=\"selected\" " : ""; ?>>Tehničke intervencije u objektu</option>
+									<option value="Intervencija s opasnim tvarima" <?php echo ($entitet->podvrsta_intervencije==="Intervencija s opasnim tvarima") ? " 
+										selected=\"selected\" " : ""; ?>>Intervencija s opasnim tvarima</option>
+		  							<option value="Ekslopzije" <?php echo ($entitet->podvrsta_intervencije==="Ekslopzije") ? " 
+		  								selected=\"selected\" " : ""; ?>>Ekslopzije</option>
+		  							<option value="Ostale tehničke intervencije"<?php echo ($entitet->podvrsta_intervencije==="Ostale tehničke intervencije") ? " 
+		  								selected=\"selected\" " : ""; ?>>Ostale tehničke intervencije</option>
   						</select>
   						
   						<label id="datumNastanka" for="datumNastanka">Datum nastanka</label>
