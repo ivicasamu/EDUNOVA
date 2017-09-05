@@ -1,0 +1,3 @@
+/applications/xampp/bin/mysql -udvd -p123
+
+/applications/xampp/bin/mysql -udvd -p123 --default_character_set=utf8 < Applications/XAMPP/htdocs/Vatrogasci/database/database.sql
