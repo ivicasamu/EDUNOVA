@@ -24,10 +24,10 @@
       			<span class="hide-for-small-only"> Moduli</span>
 	        </a>
 	        <ul class="menu vertical">
-	       		<li><a href="<?php echo $putanjaAPP ?>privatno/drustvo/index.php">Društvo</a></li>
-	      		<li><a href="<?php echo $putanjaAPP ?>privatno/clan/index.php">Članovi</a></li>
-	      		<li><a href="<?php echo $putanjaAPP ?>privatno/intervencije/index.php">Intervencije</a></li>
-	       		<li><a href="#">Vozila</a></li>
+	       		<li><a href="<?php echo $putanjaAPP ?>privatno/drustva/index.php">Društvo</a></li>
+	      		<li><a href="<?php echo $putanjaAPP ?>privatno/clanovi/index.php">Članovi</a></li>
+	      		<li><a href="#">Intervencije</a></li>
+	       		<li><a href="<?php echo $putanjaAPP ?>privatno/vozila/index.php">Vozila</a></li>
 	      	</ul>
 	   	</li>
       	<?php if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="Administrator"): ?>
@@ -37,11 +37,11 @@
       			<span class="hide-for-small-only"> Administracija</span>
 	        </a>
 	        <ul class="menu vertical">
-	        	<li><a href="<?php echo $putanjaAPP ?>privatno/operater/index.php"> Operateri</a></li>
-	       		<li><a href="<?php echo $putanjaAPP ?>privatno/vrstaIntervencije/index.php"> Šifrarnik vatrogasnih intervencija</a></li>
-	       		<li><a href="<?php echo $putanjaAPP ?>privatno/kategorizacijaVozila/index.php"> Šifrarnik vatrogasnih vozila</a></li>
-	       		<li><a href="<?php echo $putanjaAPP ?>privatno/cin/index.php"> Šifrarnik činova u vatrogastvu</a></li>
-	      		<li><a href="<?php echo $putanjaAPP ?>privatno/funkcija/index.php"> Šifrarnik funkcija u vatrogastvu</a></li>
+	        	<li><a href="<?php echo $putanjaAPP ?>privatno/operateri/index.php"> Operateri</a></li>
+	       		<li><a href="<?php echo $putanjaAPP ?>privatno/vrsteIntervencija/index.php"> Šifrarnik vatrogasnih intervencija</a></li>
+	       		<li><a href="<?php echo $putanjaAPP ?>privatno/kategorizacijeVozila/index.php"> Šifrarnik vatrogasnih vozila</a></li>
+	       		<li><a href="<?php echo $putanjaAPP ?>privatno/cinovi/index.php"> Šifrarnik činova u vatrogastvu</a></li>
+	      		<li><a href="<?php echo $putanjaAPP ?>privatno/funkcije/index.php"> Šifrarnik funkcija u vatrogastvu</a></li>
 	      		<li><a href="<?php echo $putanjaAPP ?>privatno/sredstva/index.php"> Sredstva za gašenje</a></li>
 	      	</ul>
 	   	</li>
@@ -53,8 +53,8 @@
       			<span class="hide-for-small-only"> GitHub</span>
 	        </a>
 	        <ul class="menu vertical">
-	          <li><a href="https://github.com/ivicasamu/EDUNOVA/tree/SummerProject01">GitHub kod</a></li>
-	          <li><a href="https://github.com/ivicasamu/EDUNOVA/blob/SummerProject01/database/ERA_DIAGRAM.png">ERA diagram</a></li>
+	          <li><a href="https://github.com/ivicasamu/EDUNOVA/tree/PROJECT">GitHub kod</a></li>
+	          <li><a href="https://github.com/ivicasamu/EDUNOVA/blob/PROJECT/database/ERA.png">ERA diagram</a></li>
 	        </ul>
       	</li>
       <?php endif; ?>
