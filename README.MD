@@ -6,3 +6,5 @@ Ovdje se nalazi zavrsni projekt kojeg je potrebno napraviti za zavrsetak PHP dev
 - napravljen CRUD na tablicu CIN
 - napravljen CRUD na tablicu FUNKCIJA
 - napravljen CRUD na tablicu KATEGORIZACIJA VOZILA
+- napravljen CRUD na tablicu VOZILO
+- napravljen CRUD na tablicu DVD
