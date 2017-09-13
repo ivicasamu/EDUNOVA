@@ -43,7 +43,7 @@
   								<label for="lozinka">Lozinka</label>
   								<input type="password" id="lozinka" name="lozinka" />
   								<input type="submit" class="button expanded" value="PRIJAVA" />
-  								<a href="<?php echo $putanjaAPP ?>privatno/operater/operaterUnos.php">Otvorite korisnički račun</a>
+  								<a href="<?php echo $putanjaAPP ?>privatno/operateri/unos.php">Otvorite korisnički račun</a>
   							</form>
   						</div>	
   					</div>
