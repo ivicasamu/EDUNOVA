@@ -58,7 +58,7 @@ if(isset($_POST["email"])){
 							<?php if(isset($_SESSION["logiran"])):?>
 								index.php
 							<?php else: ?>
-								<?php echo $putanjaAPP; ?>javno/prijava.php;
+								<?php echo $putanjaAPP; ?>javno/prijava.php
 							<?php endif; ?>
 						 "class="alert button">Odustani</a>
   						<?php if(isset($unioRedova) && $unioRedova>0): ?>
