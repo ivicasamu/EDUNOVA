@@ -130,7 +130,7 @@ if(isset($_POST["odustani"])){
 											<tr>
 												<td><?php echo $red->naziv_cina ?></td>
 												<td><?php echo date("Y-m-d",strtotime($red->datum_cina)); ?></td>
-												<td><i id="b_<?php echo $red->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeCin"></i></td>
+												<td><i id="b_<?php echo $red->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanje"></i></td>
 											</tr>
 											<?php endforeach; ?>
 								</tbody>
@@ -190,29 +190,96 @@ if(isset($_POST["odustani"])){
     	<?php include_once '../../predlosci/skripte.php'; ?>
     	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     	<script>
-    		$( "#uvjetDvd" ).autocomplete({
-				source: "traziDvd.php?clan=<?php echo $_GET["sifra"] ?>",
-			    focus: function( event, ui ) {
-			    	console.log(ui.item);
-			    	}
-				}).data( "ui-autocomplete" )._renderItem = function( ul, objekt ) {
-			      return $( "<li><img style=\"width: 50px\" src=\"https://vignette.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest?cb=20151119092211\" />" )
-			        .append( "<a>" + objekt.naziv + "</a>" )
-			        .appendTo( ul );
-		    }
-		    $(".brisanjeDvd").click(function(){
-		    	var element = $(this);
-				var id = element.attr("id").split("_")[1];
-				$.get( "obrisiDvd.php?clan=<?php echo $_GET["sifra"] ?>&dvd=" + id, 
-					function( vratioServer ) {
-					if(vratioServer=="OK"){
-						element.parent().parent().remove();
-					}else{
-						alert(vratioServer);
-					}
-				});
-		    	return false;
-		    });
+    		$( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#uvjetDvd" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  
+   		$( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#uvjetCin" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  
+   		$( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#uvjetFunkcija" ).autocomplete({
+      source: availableTags
+    });
+  } );
     	</script>
+		
   	</body>
 </html>
