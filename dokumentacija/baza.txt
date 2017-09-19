@@ -1,3 +1,10 @@
-/applications/xampp/bin/mysql -udvd -p123
+Mac
+	/applications/xampp/bin/mysql -udvd -p123
+	/applications/xampp/bin/mysql -udvd -p123 --default_character_set=utf8 < Applications/XAMPP/htdocs/Vatrogasci/database/database.sql
 
-/applications/xampp/bin/mysql -udvd -p123 --default_character_set=utf8 < Applications/XAMPP/htdocs/Vatrogasci/database/database.sql
+Win
+	cd c:\xampp\mysql\bin
+	mysql -uroot
+	grant all privileges on firefighters.* to 'dvd'@'localhost' identified by '123';
+	mysql -udvd -p123 --default_character_set=utf8 < "C:\xampp\htdocs\Vatrogasci\database\database.sql"
+	

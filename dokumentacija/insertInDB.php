@@ -86,8 +86,8 @@ echo "GOTOVO INSERT ČLAN_FUNKCIJA";
 <?php  
 
 for($i=0; $i<10;$i++){
-	$izraz = $veza->query("insert into dvd (naziv, oib, mb, ulica, mjesto)
-							values('DVD $i','12345654321','1234321','Sporedna $i', 'Naselje $i')");
+	$izraz = $veza->query("insert into dvd (vzo, naziv, oib, mb, ulica, mjesto)
+							values('VZO $i','DVD $i','12345654321','1234321','Sporedna $i', 'Naselje $i')");
 }
 echo "GOTOV INSERT DVD";
 ?>
