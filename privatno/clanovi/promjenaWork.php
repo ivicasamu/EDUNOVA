@@ -71,18 +71,20 @@ if(isset($_POST["odustani"])){
 										<th>Akcija</th>
 									</tr>
 								</thead>
-								<tbody id="clanDvd">
+								<tbody>
 									<?php 
 									$izraz=$veza->prepare("select c.sifra, c.naziv
 														 from clan a inner join dvd_clan b on a.sifra=b.clan
 														 inner join dvd c on c.sifra=b.dvd where a.sifra=" . $entitet->sifra);
 									$izraz->execute();
 									$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-									foreach ($rezultati as $dvd) :
+									foreach ($rezultati as $drustvo) :
 											?>
 											<tr>
-												<td><?php echo $dvd->naziv ?></td>
-												<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
+												<td><?php echo $drustvo->naziv ?></td>
+												<td>
+													<i id="b_<?php echo $drustvo->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i>
+												</td>
 											</tr>
 											<?php endforeach; ?>
 								</tbody>
@@ -116,7 +118,7 @@ if(isset($_POST["odustani"])){
 										<th>Akcija</th>
 									</tr>
 								</thead>
-								<tbody id="clanCin">
+								<tbody>
 									<?php 
 									$izraz=$veza->prepare("select c.sifra, c.naziv_cina,b. datum_cina
 															from clan a 
@@ -130,7 +132,9 @@ if(isset($_POST["odustani"])){
 											<tr>
 												<td><?php echo $cin->naziv_cina ?></td>
 												<td><?php echo date("Y-m-d",strtotime($cin->datum_cina)); ?></td>
-												<td><i id="b_<?php echo $cin->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeCin"></i></td>
+												<td>
+													<i id="b_<?php echo $cin->sifra; ?>" title="Promjena" class="step fi-page-edit size-48"></i>
+													<i id="b_<?php echo $cin->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeCin"></i></td>
 											</tr>
 											<?php endforeach; ?>
 								</tbody>
@@ -149,7 +153,7 @@ if(isset($_POST["odustani"])){
 										<th>Akcija</th>
 									</tr>
 								</thead>
-								<tbody id="clanFunkcija">
+								<tbody>
 									<?php 
 									$izraz=$veza->prepare("select c.sifra, c.naziv_funkcije, b.datum_pocetka_funkcija,b.datum_zavrsetka_funkcije
 															from clan a 
@@ -164,7 +168,10 @@ if(isset($_POST["odustani"])){
 												<td><?php echo $funkcija->naziv_funkcije ?></td>
 												<td><?php echo date("Y-m-d",strtotime($funkcija->datum_pocetka_funkcija)); ?></td>
 												<td><?php echo date("Y-m-d",strtotime($funkcija->datum_zavrsetka_funkcije)); ?></td>
-												<td><i id="b_<?php echo $funkcija->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeFunkcija"></i></td>
+												<td>
+													<i id="b_<?php echo $cin->sifra; ?>" title="Promjena" class="step fi-page-edit size-48"></i>
+													<i id="b_<?php echo $funkcija->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeFunkcija"></i>
+												</td>
 											</tr>
 											<?php endforeach; ?>
 								</tbody>
@@ -188,6 +195,26 @@ if(isset($_POST["odustani"])){
     
 		<?php include_once '../../predlosci/podnozje.php'; ?>
     	<?php include_once '../../predlosci/skripte.php'; ?>
-    	<?php include_once 'clanoviSkripte.php'; ?>
+    	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    	<script>
+		   $( "#uvjetDvd" ).autocomplete({
+      			minLength: 0,
+      			source: "traziDvd.php?clan=<?php echo $_GET["sifra"] ?>",
+      			focus: function( event, ui ) {
+        		$( "#uvjetDvd" ).val( ui.item.naziv );
+        		return false;
+      		},
+      		select: function( event, ui ) {
+		        $( "#project" ).val( ui.item.naziv );
+		        $( "#project-id" ).val( ui.item.sifra ); 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.naziv +  "</div>" )
+        .appendTo( ul );
+    };
+    	</script>
   	</body>
 </html>
