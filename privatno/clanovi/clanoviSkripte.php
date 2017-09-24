@@ -24,10 +24,10 @@
 			if(vratioServer=="OK"){
 				$("#clanDvd").append("<tr id=\"red_" + drustvo.sifra + "\" style=\"display: none\">" + 
 				"<td>" + drustvo.naziv + "</td>" + 
-				"<td><i id=\"b_" + drustvo.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanje\"></i></td>" + 
+				"<td><i id=\"b_" + drustvo.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeDvd\"></i></td>" + 
 				"</tr>");
-				definirajBrisanjeDvd();
 				$("#red_" + drustvo.sifra).fadeIn();
+				definirajBrisanjeDvd();
 			}else{
 				alert(vratioServer);
 			}
@@ -81,10 +81,10 @@
 				$("#clanCin").append("<tr id=\"red_" + cin.sifra + "\" style=\"display: none\">" + 
 				"<td>" + cin.naziv_cina + "</td>" + 
 				"<td>" + cin.datum_cina + "</td>" +
-				"<td><i id=\"b_" + cin.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanje\"></i></td>" + 
+				"<td><i id=\"b_" + cin.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeCin\"></i></td>" + 
 				"</tr>");
-				definirajBrisanjeCin();
 				$("#red_" + cin.sifra).fadeIn();
+				definirajBrisanjeCin();
 			}else{
 				alert(vratioServer);
 			}
@@ -132,17 +132,17 @@
 	}
 	
 	function spremiUBazuFunkcija(funkcija){
-		$.get( "dodajFunkciju.php?clan=<?php echo $_GET["sifra"] ?>&funkcija=" + funkcija.sifra, 
+		$.get( "dodajFunkcija.php?clan=<?php echo $_GET["sifra"] ?>&funkcija=" + funkcija.sifra, 
 			function( vratioServer ) {
 			if(vratioServer=="OK"){
 				$("#clanFunkcija").append("<tr id=\"red_" + funkcija.sifra + "\" style=\"display: none\">" + 
 				"<td>" + funkcija.naziv_funkcije + "</td>" + 
 				"<td>" + funkcija.datum_pocetka_funkcije + "</td>" +
 				"<td>" + funkcija.datum_zavrsetka_funkcije + "</td>" +
-				"<td><i id=\"b_" + funkcija.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanje\"></i></td>" + 
+				"<td><i id=\"b_" + funkcija.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeFunkcija\"></i></td>" + 
 				"</tr>");
-				definirajBrisanjeFunkcija();
 				$("#red_" + funkcija.sifra).fadeIn();
+				definirajBrisanjeFunkcija();
 			}else{
 				alert(vratioServer);
 			}

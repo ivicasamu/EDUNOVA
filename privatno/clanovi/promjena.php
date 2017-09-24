@@ -1,4 +1,4 @@
-<?php include_once '../../konfiguracija.php'; 
+	<?php include_once '../../konfiguracija.php'; 
 provjeraLogin();
 
 if(isset($_GET["sifra"])){
