@@ -130,63 +130,115 @@ if(isset($_POST["odustani"])){
 	  						<textarea rows="8" name="opis" id="opis" type="text"><?php echo $entitet->umrlih_osoba; ?></textarea>
   						</div>	
   						
-  						<div class="large-12 columns">
-							<fieldset class="fieldset">
-							<legend>sudionici</legend>
-							<input id="uvjetDvd" type="text" placeholder="dio naziva društva" />
-		  						<table>
-									<thead>
-										<tr>
-											<th style="width:30%">Društvo</th>
-											<th style="width:20%">Brisanje društva</th>
-											<th style="width:50%">Sudionici</th>
-										</tr>
-									</thead>
-									<tbody id="intervencijaDvd">
-										<?php 
-										$izraz=$veza->prepare("select d.sifra,  d.naziv as naziv from intervencija a
-																inner join intervencija_dvd_clan b on a.sifra=b.intervencija
-																inner join dvd_clan c on b.dvd_clan=c.sifra
-																inner join dvd d on c.dvd=d.sifra
-																where a.sifra= '$entitet->sifra' group by naziv");
-										$izraz->execute();
-										$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-										foreach ($rezultati as $dvd) :
-												?>
+  						<div class="large-10 columns">
+  							<div class="large-6 columns">
+  								<fieldset class="fieldset">
+  									<legend>društva</legend>
+									<input id="uvjetDvd" type="text" placeholder="dio naziva društva" />
+				  						<table>
+											<thead>
 												<tr>
-													<td><?php echo $dvd->naziv ?></td>
-													<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
-													<td>
-														<input id="uvjetClan" type="text" placeholder="dio ime ili prezimena" />
-														<table>
-															<tbody id="intervencijaClan">
-																<?php 
-																	$izraz=$veza->prepare("select d.sifra, concat(d.ime, ' ', d.prezime) as imePrezime from intervencija a
-																							inner join intervencija_dvd_clan b on a.sifra=b.intervencija
-																							inner join dvd_clan c on b.dvd_clan=c.sifra
-																							inner join clan d on c.clan=d.sifra
-																							where a.sifra= '$entitet->sifra' group by imePrezime");
-																	$izraz->execute();
-																	$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-																	foreach ($rezultati as $clan) :
-																?>
-																<tr>
-																	<td style="width:80%"><?php echo $clan->imePrezime ?></td>
-																	<td>
-																		<i id="b_<?php echo $clan->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeClan"></i>
-																	</td>
-																</tr>
-																<?php endforeach; ?>
-															</tbody>
-														</table>
-													</td>
-													
+													<th>Društvo</th>
+													<th>Akcija</th>
 												</tr>
-												<?php endforeach; ?>
-									</tbody>
-								</table>
-							</fieldset>
-  						</div>	
+										</thead>
+											<tbody id="intervencijaDvd">
+												<?php 
+												$izraz=$veza->prepare("select a.intervencija, b.sifra, b.naziv from intervencija_dvd a 
+																		inner join dvd b on a.dvd=b.sifra where a.intervencija= '$entitet->sifra' 
+																		group by naziv");
+												$izraz->execute();
+												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+												foreach ($rezultati as $dvd) :
+														?>
+														<tr>
+															<td><?php echo $dvd->naziv ?></td>
+															<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
+														</tr>
+														<?php endforeach; ?>
+											</tbody>
+									</table>
+  								</fieldset>
+  							</div>
+  							
+  							<div class="large-6 columns">
+  								<fieldset class="fieldset">
+  									<legend>članovi</legend>
+  									<input id="uvjetClan" type="text" placeholder="dio naziva društva" />
+  									<table>
+  										<thead>
+											<tr>
+												<th>Ime i prezime</th>
+												<th>Društvo</th>
+												<th>Akcija</th>
+											</tr>
+										</thead
+										<tbody id="intervencijaClan">
+											<?php 
+												$izraz=$veza->prepare("select a.sifra, concat(a.ime, ' ', a.prezime) as imePrezime, d.naziv 
+																		from clan a inner join intervencija_clan b on a.sifra=b.clan 
+																		left join dvd_clan c on a.sifra=c.clan 
+																		left join dvd d on c.dvd=d.sifra 
+																		where b.intervencija='$entitet->sifra'
+																		group by imePrezime");
+												$izraz->execute();
+												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+												foreach ($rezultati as $clan) :
+											?>
+											<tr>
+												<td><?php echo $clan->imePrezime ?></td>
+												<td><?php echo $clan->naziv ?></td>
+												<td>
+													<i id="b_<?php echo $clan->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeClan"></i>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+  								</fieldset>
+  							</div>
+  							
+  							<div class="large-6 columns">
+  								<fieldset class="fieldset">
+  									<legend>vozila</legend>
+  									<input id="uvjetVozilo" type="text" placeholder="dio naziva vozila" />
+  									<table>
+  										<thead>
+											<tr>
+												<th>Vrsta vozila</th>
+												<th>Reg. oznaka</th>
+												<th>Društvo</th>
+												<th>Akcija</th>
+											</tr>
+										</thead
+										<tbody id="intervencijaVozilo">
+											<?php 
+												$izraz=$veza->prepare("select d.vrsta_vozila, a.reg_oznaka, c.naziv from vozilo a inner join vozilo_intervencija b on a.sifra=b.vozilo
+																		inner join dvd c on a.dvd=c.sifra
+																		inner join kategorizacija_vozila d on a.vrsta=d.sifra
+																		where b.intervencija='$entitet->sifra'
+																		order by c.naziv");
+												$izraz->execute();
+												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+												foreach ($rezultati as $vozilo) :
+											?>
+											<tr>
+												<td><?php echo $vozilo->vrsta_vozila ?></td>
+												<td><?php echo $vozilo->reg_oznaka ?></td>
+												<td><?php echo $vozilo->naziv ?></td>
+												<td>
+													<i id="b_<?php echo $vozilo->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeVozilo"></i>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+  								</fieldset>
+  							</div>
+  							
+  						</div>
+								
+								
   						<input name="promjena" type="submit" class="button expanded" value="<?php 
 							if($entitet->izvjesce_popunio==""){
 								echo "Dodaj novi";
@@ -199,6 +251,7 @@ if(isset($_POST["odustani"])){
 						<input name="odustani" type="submit" class="alert button expanded" value="Odustani" />
   					</fieldset>
   				</form>	
+  				
   			</div>
   		</div>
     
