@@ -23,7 +23,7 @@
 		$.get( "dodajDvd.php?intervencija=<?php echo $_GET["sifra"] ?>&dvd=" + drustvo.sifra, 
 			function( vratioServer ) {
 			if(vratioServer=="OK"){
-				$("#intervencijaDvd").append("<tr id=\"red_" + drustvo.sifra + "\" style=\"display: none\">" + 
+				$("#intervencijaDvd").append("<tr id=\"dvd_" + drustvo.sifra + "\" style=\"display: none\">" + 
 				"<td>" + drustvo.naziv + "</td>" + 
 				"<td><i id=\"b_" + drustvo.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeDvd\"></i></td>" + 
 				"</tr>");
@@ -54,7 +54,7 @@
 	
 	
 	$( "#uvjetDvd" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1500 }, 'slow');
+		$('html,body').animate({ scrollTop: 800 }, 'slow');
 	})
 	
 //CLAN	
@@ -80,7 +80,7 @@
 		$.get( "dodajClan.php?intervencija=<?php echo $_GET["sifra"] ?>&clan=" + clan.sifra, 
 			function( vratioServer ) {
 			if(vratioServer=="OK"){
-				$("#intervencijaClan").append("<tr id=\"red_" + clan.sifra + "\" style=\"display: none\">" + 
+				$("#intervencijaClan").append("<tr id=\"clan_" + clan.sifra + "\" style=\"display: none\">" + 
 				"<td>" + clan.imePrezime + "</td>" + 
 				"<td>" + clan.naziv + "</td>" + 
 				"<td><i id=\"b_" + clan.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeClan\"></i></td>" + 
@@ -112,7 +112,7 @@
 	
 	
 	$( "#uvjetClan" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1500 }, 'slow');
+		$('html,body').animate({ scrollTop: 1400 }, 'slow');
 	})
 	
 	//VOZILO	
@@ -138,7 +138,7 @@
 		$.get( "dodajVozilo.php?intervencija=<?php echo $_GET["sifra"] ?>&vozilo=" + vozilo.sifra, 
 			function( vratioServer ) {
 			if(vratioServer=="OK"){
-				$("#intervencijaVozilo").append("<tr id=\"red_" + vozilo.sifra + "\" style=\"display: none\">" + 
+				$("#intervencijaVozilo").append("<tr id=\"vozilo_" + vozilo.sifra + "\" style=\"display: none\">" + 
 				"<td>" + vozilo.vrsta_vozila + "</td>" + 
 				"<td>" + vozilo.reg_oznaka + "</td>" + 
 				"<td>" + vozilo.naziv + "</td>" + 
@@ -171,7 +171,75 @@
 	
 	
 	$( "#uvjetVozilo" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1800 }, 'slow');
+		$('html,body').animate({ scrollTop: 800 }, 'slow');
 	});
+	
+//SREDSTVO
+$( "#uvjetSredstvo" ).autocomplete({
+		source: "traziSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>",	
+	    focus: function( event, ui ) {
+	    	event.preventDefault;
+	    },
+	    select: function(event, ui) {
+	        $(this).val('').blur();
+	        event.preventDefault();
+	        spremiUBazuSredstvo(ui.item);
+	    }
+		}).data( "ui-autocomplete" )._renderItem = function( ul, objektSredstvo ){
+	      return $( "<li><img style=\"width: 50px\" src=\"https://vignette.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest?cb=20151119092211\" />" )
+	        .append( "<a>" + objektSredstvo.naziv_sredstva + "</a>" )
+	        .appendTo( ul );
+	}
+	
+	function spremiUBazuSredstvo(sredstvo){
+		console.log(sredstvo.sifra);
+		$.get( "dodajSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>&sredstvo=" + sredstvo.sifra, 
+			function( vratioServer ) {
+			if(vratioServer=="OK"){
+				$("#intervencijaSredstvo").append("<tr id=\"sredstvo_" + sredstvo.sifra + "\" style=\"display: none\">" + 
+				"<td>" + sredstvo.naziv_sredstva + "</td>" +  
+				"<td><i id=\"b_" + sredstvo.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeSredstvo\"></i></td>" + 
+				"</tr>");
+				$("#sredstvo_" + sredstvo.sifra).fadeIn();
+				definirajBrisanjeSredstvo();
+			}else{
+				alert(vratioServer);
+			}
+		});
+	}
+	 function definirajBrisanjeSredstvo(){
+		$(".brisanjeSredstvo").click(function(){
+		var element = $(this);
+		var id = element.attr("id").split("_")[1];
+		$.get( "obrisiSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>&sredstvo=" + id, 
+			function( vratioServer ) {
+			if(vratioServer=="OK"){
+				element.parent().parent().remove();
+			}else{
+				console.log(vratioServer);
+			}
+		});
+		return false;
+	});
+	}
+	
+	definirajBrisanjeSredstvo();
+	
+	
+	$( "#uvjetSredstvo" ).focus(function() {
+		$('html,body').animate({ scrollTop: 1400 }, 'slow');
+	});
+	
+	$(".promjenaSredstvo").click(function(){
+				$("#promjenaSredstvo").html("Promjena količine");
+				var element = $(this);
+				var id = element.attr("id").split("_")[1];
+				$.get("kolicinaSredstva.php?intervencija=<?php echo $_GET["sifra"] ?>&sredstvo=" + id, function(vratioServer){
+					console.log(vratioServer);
+					$("#promjenaSredstvo").val(vratioServer);
+					$("#revealSredstvo").foundation('open');
+				});
+				return false;
+			});
 	
 </script>

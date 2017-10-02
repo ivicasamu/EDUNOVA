@@ -34,6 +34,33 @@ if(isset($_POST["promjena"])){
 	header("location: index.php");
 }
 
+if(isset($_POST["promjenaKolicinaSredstva"])){
+	$izraz = $veza -> prepare("update intervencija set vrsta_intervencije=:vrsta_intervencije, datum_nastanka=:datum_nastanka, datum_dojave=:datum_dojave, 
+								datum_dolaska=:datum_dolaska, datum_lokalizacije=:datum_lokalizacije, datum_zavrsetka=:datum_zavrsetka, mjesto=:mjesto,
+								ulica=:ulica, vlasnik=:vlasnik, osteceno=:osteceno,prijedeno_km=:prijedeno_km, povrijedenih_osoba=:povrijedenih_osoba, 
+								umrlih_osoba=:umrlih_osoba, opis=:opis, izvjesce_popunio=:izvjesce_popunio where sifra=:sifra");
+	$izraz -> execute(array(
+	"vrsta_intervencije"=>$_POST["vrsta_intervencije"],
+	"datum_nastanka"=>$_POST["datum_nastanka"],
+	"datum_dojave"=>$_POST["datum_dojave"],
+	"datum_dolaska"=>$_POST["datum_dolaska"],
+	"datum_lokalizacije"=>$_POST["datum_lokalizacije"],
+	"datum_zavrsetka"=>$_POST["datum_zavrsetka"],
+	"mjesto"=>$_POST["mjesto"],
+	"ulica"=>$_POST["ulica"],
+	"vlasnik"=>$_POST["vlasnik"],
+	"osteceno"=>$_POST["osteceno"],
+	"prijedeno_km"=>$_POST["prijedeno_km"],
+	"povrijedenih_osoba"=>$_POST["povrijedenih_osoba"],
+	"umrlih_osoba"=>$_POST["umrlih_osoba"],
+	"opis"=>$_POST["opis"],
+	"izvjesce_popunio"=>$_POST["izvjesce_popunio"],
+	"sifra"=>$_POST["sifra"]
+	));	
+	
+	header("location: index.php");
+}
+
 if(isset($_POST["odustani"])){
 	if($_POST["izvjesce_popunio"]===""){
 		$izraz = $veza -> prepare("delete from intervencija where sifra=:sifra");
@@ -52,7 +79,7 @@ if(isset($_POST["odustani"])){
   	<body>
   		<?php include_once '../../predlosci/izbornik.php' ?>
   		<div class="row">
-  			<div class="large-10 columns">
+  			<div class="large-10 columns large-centered">
   				<form method="POST">
   					<fieldset class="fieldset">
   						<legend>UNOSNI PODACI</legend>
@@ -127,10 +154,10 @@ if(isset($_POST["odustani"])){
 	  						<input name="umrlih_osoba" id="umrlih_osoba" type="number" value="<?php echo $entitet->umrlih_osoba; ?>" />
 	  						
 	  						<label id="opis" for="opis">Opis</label>
-	  						<textarea rows="8" name="opis" id="opis" type="text"><?php echo $entitet->umrlih_osoba; ?></textarea>
+	  						<textarea rows="8" name="opis" id="opis" type="text"><?php echo $entitet->opis; ?></textarea>
   						</div>	
   						
-  						<div class="large-10 columns">
+  						<hr/ >
   							<div class="large-6 columns">
   								<fieldset class="fieldset">
   									<legend>društva</legend>
@@ -157,43 +184,6 @@ if(isset($_POST["odustani"])){
 														</tr>
 														<?php endforeach; ?>
 											</tbody>
-									</table>
-  								</fieldset>
-  							</div>
-  							
-  							<div class="large-6 columns">
-  								<fieldset class="fieldset">
-  									<legend>članovi</legend>
-  									<input id="uvjetClan" type="text" placeholder="dio naziva društva" />
-  									<table>
-  										<thead>
-											<tr>
-												<th>Ime i prezime</th>
-												<th>Društvo</th>
-												<th>Akcija</th>
-											</tr>
-										</thead
-										<tbody id="intervencijaClan">
-											<?php 
-												$izraz=$veza->prepare("select a.sifra, concat(a.ime, ' ', a.prezime) as imePrezime, d.naziv 
-																		from clan a inner join intervencija_clan b on a.sifra=b.clan 
-																		left join dvd_clan c on a.sifra=c.clan 
-																		left join dvd d on c.dvd=d.sifra 
-																		where b.intervencija='$entitet->sifra'
-																		group by imePrezime");
-												$izraz->execute();
-												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-												foreach ($rezultati as $clan) :
-											?>
-											<tr>
-												<td><?php echo $clan->imePrezime ?></td>
-												<td><?php echo $clan->naziv ?></td>
-												<td>
-													<i id="b_<?php echo $clan->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeClan"></i>
-												</td>
-											</tr>
-											<?php endforeach; ?>
-										</tbody>
 									</table>
   								</fieldset>
   							</div>
@@ -235,20 +225,94 @@ if(isset($_POST["odustani"])){
 									</table>
   								</fieldset>
   							</div>
+  							<hr />
+  							<div class="large-6 columns">
+  								<fieldset class="fieldset">
+  									<legend>članovi</legend>
+  									<input id="uvjetClan" type="text" placeholder="dio naziva društva" />
+  									<table>
+  										<thead>
+											<tr>
+												<th>Ime i prezime</th>
+												<th>Društvo</th>
+												<th>Akcija</th>
+											</tr>
+										</thead
+										<tbody id="intervencijaClan">
+											<?php 
+												$izraz=$veza->prepare("select a.sifra, concat(a.ime, ' ', a.prezime) as imePrezime, d.naziv 
+																		from clan a inner join intervencija_clan b on a.sifra=b.clan 
+																		left join dvd_clan c on a.sifra=c.clan 
+																		left join dvd d on c.dvd=d.sifra 
+																		where b.intervencija='$entitet->sifra'
+																		group by imePrezime");
+												$izraz->execute();
+												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+												foreach ($rezultati as $clan) :
+											?>
+											<tr>
+												<td><?php echo $clan->imePrezime ?></td>
+												<td><?php echo $clan->naziv ?></td>
+												<td>
+													<i id="b_<?php echo $clan->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeClan"></i>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+  								</fieldset>
+  							</div>
+  							<div class="large-6 columns">
+  								<fieldset class="fieldset">
+  									<legend>sredstva za gašenje</legend>
+  									<input id="uvjetSredstvo" type="text" placeholder="dio naziva sredstva" />
+  									<table>
+  										<thead>
+											<tr>
+												<th>Vrsta sredstva</th>
+												<th>Količina</th>
+												<th>Akcija</th>
+											</tr>
+										</thead
+										<tbody id="intervencijaSredstvo">
+											<?php 
+												$izraz=$veza->prepare("select b.sifra, b.naziv_sredstva, a.kolicina_sredstava, b.jedinicna_mjera from sredstvo_intervencija a 
+																		inner join sredstvo b on a.sredstvo=b.sifra where intervencija='$entitet->sifra'");
+												$izraz->execute();
+												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+												foreach ($rezultati as $sredstvo) :
+											?>
+											<tr>
+												<td><?php echo $sredstvo->naziv_sredstva ?></td>
+												<td><?php echo $sredstvo->kolicina_sredstava?> <?php echo $sredstvo->jedinicna_mjera ?></td>
+												<td>
+													<span title="Promjena količine" id="n_<?php echo $sredstvo->sifra; ?>" class="promjenaSredstvo">
+														<i id="b_<?php echo $sredstvo->sifra; ?>" class="step fi-page-edit size-72"></i>
+													</span>
+													
+													<i id="b_<?php echo $sredstvo->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeSredstvo"></i>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+  								</fieldset>
+  							</div>
   							
   						</div>
 								
+						<div class="large-10 columns large-centered">		
+	  						<input name="promjena" type="submit" class="button expanded" value="<?php 
+								if($entitet->izvjesce_popunio==""){
+									echo "Dodaj novi";
+								}else{
+									echo "Promjeni";
+								}
 								
-  						<input name="promjena" type="submit" class="button expanded" value="<?php 
-							if($entitet->izvjesce_popunio==""){
-								echo "Dodaj novi";
-							}else{
-								echo "Promjeni";
-							}
-							
-							?>"/>
-						<input type="hidden" name="sifra" value="<?php echo $entitet->sifra; ?>" />
-						<input name="odustani" type="submit" class="alert button expanded" value="Odustani" />
+								?>"/>
+							<input type="hidden" name="sifra" value="<?php echo $entitet->sifra; ?>" />
+							<input name="odustani" type="submit" class="alert button expanded" value="Odustani" />
+						</div>
   					</fieldset>
   				</form>	
   				
@@ -256,6 +320,16 @@ if(isset($_POST["odustani"])){
   		</div>
     
 		<?php include_once '../../predlosci/podnozje.php'; ?>
+		<div class="reveal" id="revealSredstvo" data-reveal>
+		  	<form method="POST">
+		  		<p id="promjenaSredstvo"></p>
+		  		<input name="promjenaSredstvo" id="promjenaSredstvo" type="number" value=""/>
+			  	<a href="#" class="button">Promijeni</a>
+				<button class="close-button" data-close aria-label="Close modal" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
+		  	</form>
+		</div>
     	<?php include_once '../../predlosci/skripte.php'; ?>
     	<?php include_once 'intervecijeSkripte.php'; ?>
   	</body>
