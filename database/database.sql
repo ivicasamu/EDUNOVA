@@ -129,14 +129,18 @@ create table vozilo_intervencija(
 );
 
 create table dvd_clan(
-	sifra	int not null primary key auto_increment,
 	dvd 	int not null,
 	clan 	int not null
 );
 
-create table intervencija_dvd_clan(
+create table intervencija_dvd(
 	intervencija 	int not null,
-	dvd_clan 		int not null
+	dvd		 		int not null
+);
+
+create table intervencija_clan(
+	intervencija 	int not null,
+	clan	 		int not null
 );
 
 alter table sredstvo_intervencija add foreign key (sredstvo) references sredstvo(sifra);
@@ -159,8 +163,11 @@ alter table vozilo_intervencija add foreign key (intervencija) references interv
 alter table dvd_clan add foreign key (dvd) references dvd(sifra);
 alter table dvd_clan add foreign key (clan) references clan(sifra);
 
-alter table intervencija_dvd_clan add foreign key (intervencija) references intervencija(sifra);
-alter table intervencija_dvd_clan add foreign key (dvd_clan) references dvd_clan(sifra);
+alter table intervencija_dvd add foreign key (intervencija) references intervencija(sifra);
+alter table intervencija_dvd add foreign key (dvd) references dvd(sifra);
+
+alter table intervencija_clan add foreign key (intervencija) references intervencija(sifra);
+alter table intervencija_clan add foreign key (clan) references clan(sifra);
 
 insert into vrsta_intervencije (vrsta_intervencije, podvrsta_intervencije, podpodvrsta_intervencije, podpodpodvrsta_intervencije)
 values

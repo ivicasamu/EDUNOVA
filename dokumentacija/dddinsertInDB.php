@@ -2,7 +2,7 @@
 provjeraLogin();
 $veza->beginTransaction();
 for($i=0; $i<4;$i++){
-	for($j=0; $j<100; $j++){
+	for($j=0; $j<50; $j++){
 	$izraz = $veza->query("insert into intervencija (vrsta_intervencije, datum_dojave, datum_zavrsetka, mjesto, opis, izvjesce_popunio) 
 							values($i+1, '2017-01-01 10:10:10','2017-01-01 11:11:11','Testiranje','Testiranje','Đuro Šarićž')");
 	}
@@ -96,42 +96,28 @@ echo "GOTOV INSERT DVD";
 
 <?php  
 
-/*for($i=0; $i<10;$i++){
+for($i=0; $i<10;$i++){
 	for($j=((($i+1)*15)-15); $j<(($i+1)*15); $j++){
 	$izraz = $veza->query("insert into dvd_clan (dvd, clan) 
 							values($i+1, $j+1)");
 	}
 }
 echo "GOTOVO INSERT DVD_CLAN";
-*/
+
 ?>
 
 <hr />
 
 <?php  
-/*
-for($i=0; $i<10;$i++){
-	for($j=((($i+1)*5)-5); $j<(($i+1)*5); $j++){
-	$izraz = $veza->query("insert into intervencija_dvd (intervencija, dvd) 
-							values($i+1, $j+1)");
-	}
-}
-echo "GOTOVO INSERT INTERVENCIJA_DVD";
-*/
-?>
 
-<hr />
-
-<?php  
-/*
 for($i=0; $i<30;$i++){
 	for($j=((($i+1)*5)-5); $j<(($i+1)*5); $j++){
-	$izraz = $veza->query("insert into intervencija_clan (intervencija, clan) 
+	$izraz = $veza->query("insert into intervencija_dvd_clan (intervencija, dvd_clan) 
 							values($i+1, $j+1)");
 	}
 }
-echo "GOTOVO INSERT INTERVENCIJA_CLAN";
-*/
+echo "GOTOVO INSERT INTERVENCIJA_DVD_CLAN";
+
 ?>
 
 <hr />
@@ -141,7 +127,7 @@ echo "GOTOVO INSERT INTERVENCIJA_CLAN";
 for($i=0; $i<10;$i++){
 	for($j=0; $j<4; $j++){
 	$izraz = $veza->query("insert into vozilo (dvd, vrsta, reg_oznaka, proizvodac, model, godina_proizvodnje) 
-							values($i+1, $j+1, 'OS-$i-AB','MAN', 'MAN', '2000-01-01')");
+							values($i+1, $j+1, 'OS-123-AB','MAN', 'MAN', '2000-01-01')");
 	}
 }
 echo "GOTOVO INSERT VOZILA";
@@ -151,7 +137,7 @@ echo "GOTOVO INSERT VOZILA";
 <hr />
 
 <?php  
-/*
+
 for($i=0; $i<40;$i++){
 	for($j=((($i+1)*4)-4); $j<(($i+1)*4); $j++){
 	$izraz = $veza->query("insert into vozilo_intervencija (vozilo, intervencija) 
@@ -159,7 +145,7 @@ for($i=0; $i<40;$i++){
 	}
 }
 echo "GOTOVO INSERT VOZILO_INTERVENCIJA";
-*/
+
 ?>
 
 <?php  
