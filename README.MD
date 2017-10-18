@@ -9,3 +9,4 @@ Ovdje se nalazi zavrsni projekt kojeg je potrebno napraviti za zavrsetak PHP dev
 - napravljen CRUD na tablicu VOZILO
 - napravljen CRUD na tablicu DVD
 - napravljen CRUD na tablicu ČLAN
+- napravljen CRUD na tablicu INTERVENCIJA
