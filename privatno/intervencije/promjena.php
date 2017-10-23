@@ -106,29 +106,29 @@ if(isset($_POST["odustani"])){
 	  						</select>
 	  						
 	  						<label id="datum_nastanka" for="datum_nastanka">Datum nastanka</label>
-	  						<input name="datum_nastanka" id="datum_nastanka" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
+	  						<input name="datum_nastanka" id="datum_nastanka" type="datetime" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php 
 	  						if($entitet->datum_nastanka!=0){
-	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_nastanka)); }?>"/>
+	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_nastanka)); }?>"/>
 	  						
 	  						<label id="datum_dojave" for="datum_dojave">Datum dojave</label>
-	  						<input name="datum_dojave" id="datum_dojave" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
+	  						<input name="datum_dojave" id="datum_dojave" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
 	  						if($entitet->datum_dojave!=0){
-	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_dojave)); }?>" />
+	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_dojave)); }?>" />
 	  						
 	  						<label id="datum_dolaska" for="datum_dolaska">Datum dolaska</label>
-	  						<input name="datum_dolaska" id="datum_dolaska" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
+	  						<input name="datum_dolaska" id="datum_dolaska" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
 	  						if($entitet->datum_dolaska!=0){
-	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_dolaska)); }?>" />
+	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_dolaska)); }?>" />
 	  						
 	  						<label id="datum_lokalizacije" for="datum_lokalizacije">Datum lokalizacije</label>
-	  						<input name="datum_lokalizacije" id="datum_lokalizacije" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
+	  						<input name="datum_lokalizacije" id="datum_lokalizacije" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
 	  						if($entitet->datum_lokalizacije!=0){
-	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_lokalizacije)); }?>" />
+	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_lokalizacije)); }?>" />
 	  						
 	  						<label id="datum_zavrsetka" for="datum_zavrsetka">Datum završetka intervencije</label>
-	  						<input name="datum_zavrsetka" id="datum_zavrsetka" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
+	  						<input name="datum_zavrsetka" id="datum_zavrsetka" type="datetime" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php 
 	  						if($entitet->datum_zavrsetka!=0){
-	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_zavrsetka)); }?>" />
+	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_zavrsetka)); }?>" />
 	  						
 	  						<label id="mjesto" for="mjesto">Mjesto</label>
 	  						<input name="mjesto" id="mjesto" type="text" value="<?php echo $entitet->mjesto; ?>" />
@@ -157,38 +157,37 @@ if(isset($_POST["odustani"])){
 	  						<textarea rows="8" name="opis" id="opis" type="text"><?php echo $entitet->opis; ?></textarea>
   						</div>	
   						
-  						<hr/ >
-  							<div class="large-6 columns">
-  								<fieldset class="fieldset">
-  									<legend>društva</legend>
-									<input id="uvjetDvd" type="text" placeholder="dio naziva društva" />
-				  						<table>
-											<thead>
-												<tr>
-													<th>Društvo</th>
-													<th>Akcija</th>
-												</tr>
-										</thead>
-											<tbody id="intervencijaDvd">
-												<?php 
-												$izraz=$veza->prepare("select a.intervencija, b.sifra, b.naziv from intervencija_dvd a 
-																		inner join dvd b on a.dvd=b.sifra where a.intervencija= '$entitet->sifra' 
-																		group by naziv");
-												$izraz->execute();
-												$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-												foreach ($rezultati as $dvd) :
-														?>
-														<tr>
-															<td><?php echo $dvd->naziv ?></td>
-															<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
-														</tr>
-														<?php endforeach; ?>
-											</tbody>
+						<div class="large-12 columns">
+							<fieldset class="fieldset">
+								<legend>društva</legend>
+								<input id="uvjetDvd" type="text" placeholder="dio naziva društva" />
+			  						<table>
+										<thead>
+											<tr>
+												<th>Društvo</th>
+												<th>Akcija</th>
+											</tr>
+									</thead>
+										<tbody id="intervencijaDvd">
+											<?php 
+											$izraz=$veza->prepare("select a.intervencija, b.sifra, b.naziv from intervencija_dvd a 
+																	inner join dvd b on a.dvd=b.sifra where a.intervencija= '$entitet->sifra' 
+																	group by naziv");
+											$izraz->execute();
+											$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+											foreach ($rezultati as $dvd) :
+													?>
+													<tr>
+														<td><?php echo $dvd->naziv ?></td>
+														<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
+													</tr>
+													<?php endforeach; ?>
+										</tbody>
 									</table>
   								</fieldset>
   							</div>
   							
-  							<div class="large-6 columns">
+  							<div class="large-12 columns">
   								<fieldset class="fieldset">
   									<legend>vozila</legend>
   									<input id="uvjetVozilo" type="text" placeholder="dio naziva vozila" />
@@ -225,8 +224,7 @@ if(isset($_POST["odustani"])){
 									</table>
   								</fieldset>
   							</div>
-  							<hr />
-  							<div class="large-6 columns">
+  							<div class="large-12 columns">
   								<fieldset class="fieldset">
   									<legend>članovi</legend>
   									<input id="uvjetClan" type="text" placeholder="dio naziva društva" />
@@ -262,7 +260,7 @@ if(isset($_POST["odustani"])){
 									</table>
   								</fieldset>
   							</div>
-  							<div class="large-6 columns">
+  							<div class="large-12 columns">
   								<fieldset class="fieldset">
   									<legend>sredstva za gašenje</legend>
   									<input id="uvjetSredstvo" type="text" placeholder="dio naziva sredstva" />
@@ -289,7 +287,6 @@ if(isset($_POST["odustani"])){
 													<span title="Promjena količine" id="n_<?php echo $sredstvo->sifra; ?>" class="promjenaSredstvo">
 														<i id="b_<?php echo $sredstvo->sifra; ?>" class="step fi-page-edit size-72"></i>
 													</span>
-													
 													<i id="b_<?php echo $sredstvo->sifra; ?>" title="Brisanje"class="step fi-page-delete size-48 brisanjeSredstvo"></i>
 												</td>
 											</tr>
@@ -320,16 +317,14 @@ if(isset($_POST["odustani"])){
   		</div>
     
 		<?php include_once '../../predlosci/podnozje.php'; ?>
-		<div class="reveal" id="revealSredstvo" data-reveal>
-		  	<form method="POST">
-		  		<p id="promjenaSredstvo"></p>
-		  		<input name="promjenaSredstvo" id="promjenaSredstvo" type="number" value=""/>
-			  	<a href="#" class="button">Promijeni</a>
-				<button class="close-button" data-close aria-label="Close modal" type="button">
-					<span aria-hidden="true">&times;</span>
-				</button>
-		  	</form>
-		</div>
+			<div class="reveal" id="revealKolicina" data-reveal>
+			  Unesite količinu za <span id="odabrano"></span>
+			  <input type="number" id="kolicina" />
+			  <a id="spremiUBazuSKolicinom" href="#" class="success button expanded">Dodaj</a>
+			  <button class="close-button" data-close aria-label="Close modal" type="button">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
     	<?php include_once '../../predlosci/skripte.php'; ?>
     	<?php include_once 'intervecijeSkripte.php'; ?>
   	</body>

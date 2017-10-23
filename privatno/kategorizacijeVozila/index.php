@@ -38,15 +38,14 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 					</div>
 					<?php
 					$uvjetUpit = "%" . $uvjet . "%";
-					$izraz = $veza -> prepare("select count(*) from kategorizacija_vozila where concat (vrsta_vozila, podvrsta_vozila,
-												podpodvrsta_vozila) like :uvjet");
+					$izraz = $veza -> prepare("select count(*) from kategorizacija_vozila where concat (vrsta_vozila, podvrsta_vozila) like :uvjet");
 					$izraz -> execute(array("uvjet" => $uvjetUpit));
 					$ukupnoStranica = ceil($izraz -> fetchColumn() / $rezultataPoStranici);
 					if ($stranica > $ukupnoStranica) {
 						$stranica = $ukupnoStranica;
 					}
 					?>
-					<div class="hide-for-large">
+					<div>
 						<?php
 						include '../../predlosci/paginator.php';
 						?>
@@ -56,14 +55,13 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 							<tr>
 								<th>Vrsta vozila</th>
 								<th>Pod vrsta vozila</th>
-								<th>PodPod vrsta vozila</th>
 								<th>Akcija</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-								$izraz = $veza->prepare("select sifra, vrsta_vozila, podvrsta_vozila, podpodvrsta_vozila, count(*) from kategorizacija_vozila 
-														where concat (vrsta_vozila, podvrsta_vozila, podpodvrsta_vozila) like :uvjet
+								$izraz = $veza->prepare("select sifra, vrsta_vozila, podvrsta_vozila, count(*) from kategorizacija_vozila 
+														where concat (vrsta_vozila, podvrsta_vozila) like :uvjet
 														group by sifra order by vrsta_vozila, podvrsta_vozila
 														limit " .(($rezultataPoStranici*$stranica)-$rezultataPoStranici) . "," .$rezultataPoStranici);					
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
@@ -73,7 +71,6 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 							<tr>
 								<td data-label="Vrsta vozila"><?php echo $red->vrsta_vozila; ?></td>
 								<td data-label="Pod vrsta vozila"><?php echo $red->podvrsta_vozila; ?></td>
-								<td data-label="PodPod vrsta vozila"><?php echo $red->podpodvrsta_vozila; ?></td>
 								<td data-label="Akcija">
 									<a href="promjena.php?sifra=<?php echo $red->sifra;?>">
 										<i class="step fi-page-edit size-72" title="Promjena"></i>

@@ -5,6 +5,9 @@ if(isset($_GET["sifra"])){
 	$izraz = $veza->prepare("select * from clan where sifra=:sifra");
 	$izraz -> execute(array("sifra"=>$_GET["sifra"]));
 	$entitet = $izraz -> fetch(PDO::FETCH_OBJ);
+	if($entitet->oib==""){
+		$entitet->oib=dohvatiOIB();
+	}
 }
 
 if(isset($_POST["promjena"])){
@@ -81,7 +84,7 @@ if(isset($_POST["odustani"])){
 									foreach ($rezultati as $dvd) :
 											?>
 											<tr>
-												<td><?php echo $dvd->naziv ?></td>
+												<td data-label="Društvo"><?php echo $dvd->naziv ?></td>
 												<td><i id="b_<?php echo $dvd->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeDvd"></i></td>
 											</tr>
 											<?php endforeach; ?>
@@ -112,24 +115,19 @@ if(isset($_POST["odustani"])){
 								<thead>
 									<tr>
 										<th>Čin</th>
-										<th>Datum stjecanja</th>
 										<th>Akcija</th>
 									</tr>
 								</thead>
 								<tbody id="clanCin">
 									<?php 
-									$izraz=$veza->prepare("select c.sifra, c.naziv_cina,b. datum_cina
-															from clan a 
-															inner join clan_cin b on a.sifra=b.clan
-															inner join cin c on c.sifra=b.cin
-															where a.sifra=" . $entitet->sifra);
+									$izraz=$veza->prepare("select c.sifra, c.naziv_cina from clan a inner join clan_cin b on a.sifra=b.clan
+															inner join cin c on c.sifra=b.cin where a.sifra=" . $entitet->sifra);
 									$izraz->execute();
 									$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
 									foreach ($rezultati as $cin) :
 											?>
 											<tr>
-												<td><?php echo $cin->naziv_cina ?></td>
-												<td><?php echo date("Y-m-d",strtotime($cin->datum_cina)); ?></td>
+												<td data-label="Čin"><?php echo $cin->naziv_cina ?></td>
 												<td><i id="b_<?php echo $cin->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeCin"></i></td>
 											</tr>
 											<?php endforeach; ?>
@@ -144,26 +142,19 @@ if(isset($_POST["odustani"])){
 								<thead>
 									<tr>
 										<th>Funkcija</th>
-										<th>Datum početka</th>
-										<th>Datum završetka</th>
 										<th>Akcija</th>
 									</tr>
 								</thead>
 								<tbody id="clanFunkcija">
 									<?php 
-									$izraz=$veza->prepare("select c.sifra, c.naziv_funkcije, b.datum_pocetka_funkcija,b.datum_zavrsetka_funkcije
-															from clan a 
-															inner join clan_funkcija b on a.sifra=b.clan
-															inner join funkcija c on c.sifra=b.funkcija
-															where a.sifra=" . $entitet->sifra);
+									$izraz=$veza->prepare("select c.sifra, c.naziv_funkcije from clan a inner join clan_funkcija b on a.sifra=b.clan
+															inner join funkcija c on c.sifra=b.funkcija where a.sifra=" . $entitet->sifra);
 									$izraz->execute();
 									$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
 									foreach ($rezultati as $funkcija) :
 											?>
 											<tr>
-												<td><?php echo $funkcija->naziv_funkcije ?></td>
-												<td><?php echo date("Y-m-d",strtotime($funkcija->datum_pocetka_funkcija)); ?></td>
-												<td><?php echo date("Y-m-d",strtotime($funkcija->datum_zavrsetka_funkcije)); ?></td>
+												<td data-label="Funkcija"><?php echo $funkcija->naziv_funkcije ?></td>
 												<td><i id="b_<?php echo $funkcija->sifra; ?>" title="Brisanje" class="step fi-page-delete size-48 brisanjeFunkcija"></i></td>
 											</tr>
 											<?php endforeach; ?>

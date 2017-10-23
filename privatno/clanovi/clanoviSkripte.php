@@ -50,11 +50,7 @@
 	}
 	
 	definirajBrisanjeDvd();
-	
-	
-	$( "#uvjetDvd" ).focus(function() {
-		$('html,body').animate({ scrollTop: 400 }, 'slow');
-	}),
+
 	
 //CIN
 	$( "#uvjetCin" ).autocomplete({
@@ -107,11 +103,7 @@
 	}
 	
 	definirajBrisanjeCin();
-	
-	
-	$( "#uvjetCin" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1000 }, 'slow');
-	});
+
 	
 	//FUNKCIJA
 	$( "#uvjetFunkcija" ).autocomplete({
@@ -166,8 +158,4 @@
 	
 	definirajBrisanjeFunkcija();
 	
-	
-	$( "#uvjetFunkcija" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1300 }, 'slow');
-	});
 </script>

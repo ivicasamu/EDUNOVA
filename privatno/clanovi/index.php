@@ -54,7 +54,6 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 						<thead>
 							<tr>
 								<th>Ime i prezime</th>
-								<th>OIB</th>
 								<th>Datum rođenja</th>
 								<th>Adresa</th>
 								<th>Telefon</th>
@@ -65,7 +64,7 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 						<tbody>
 							<?php
 							
-								$izraz = $veza->prepare("select sifra, concat(ime,' ', prezime) as imePrezime, oib, datum_rodenja, concat(mjesto, ', ', ulica) as adresa, 
+								$izraz = $veza->prepare("select sifra, concat(ime,' ', prezime) as imePrezime, datum_rodenja, concat(mjesto, ', ', ulica) as adresa, 
 														telefon, datum_uclanjenja from clan 
 														where concat(ime,' ', prezime) like :uvjet
 														limit " . (($rezultataPoStranici*$stranica)-$rezultataPoStranici) . ", " . $rezultataPoStranici);					
@@ -75,7 +74,6 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 							?>
 							<tr>
 								<td data-label="Ime i prezime"><?php echo $red->imePrezime; ?></td>
-								<td data-label="OIB"><?php echo $red->oib; ?></td>
 								<td data-label="Datum rođenja"><?php echo date("d.m.Y",strtotime($red->datum_rodenja)); ?></td>
 								<td data-label="Adresa"><?php echo $red->adresa; ?></td>
 								<td data-label="Telefon"><?php echo $red->telefon; ?></td>

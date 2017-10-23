@@ -14,7 +14,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 		<?php include_once '../../predlosci/izbornik.php'
 		?>
 		<div class="row">
-			<div class="large-6 medium-6 small-12 columns large-centered">
+			<div class="large-8 medium-8 small-12 columns large-centered">
 				<div class="callout">
 					<div class="row">
 						<div class="large-6 medium-6 small-12 columns">
@@ -37,7 +37,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 						<tbody>
 							<?php
 								$uvjetUpit="%" . $uvjet . "%";
-								$izraz = $veza->prepare("select sifra , naziv_funkcije from funkcija where naziv_funkcije like :uvjet");
+								$izraz = $veza->prepare("select sifra , naziv_funkcije from funkcija where naziv_funkcije like :uvjet order by naziv_funkcije");
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
 								foreach ($rezultati as $red):

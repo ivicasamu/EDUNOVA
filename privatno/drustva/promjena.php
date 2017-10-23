@@ -5,6 +5,9 @@ if(isset($_GET["sifra"])){
 	$izraz = $veza->prepare("select * from dvd where sifra=:sifra");
 	$izraz -> execute(array("sifra"=>$_GET["sifra"]));
 	$entitet = $izraz -> fetch(PDO::FETCH_OBJ);
+	if($entitet->oib==""){
+		$entitet->oib=dohvatiOIB();
+	}
 }
 
 if(isset($_POST["promjena"])){
@@ -78,7 +81,7 @@ if(isset($_POST["odustani"])){
   						
   						<label id="godina_osnivanja" for="godina_osnivanja">Godina osnivanja</label>
   						<input name="godina_osnivanja" id="godina_osnivanja" type="date" 
-  						value="<?php echo date("Y",strtotime($entitet->godina_osnivanja)); ?>" />
+  						value="<?php echo date("Y-m-d",strtotime($entitet->godina_osnivanja)); ?>" />
   						
   						<input name="promjena" type="submit" class="button expanded" value="<?php 
 							if($entitet->naziv==""){

@@ -14,7 +14,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 		<?php include_once '../../predlosci/izbornik.php'
 		?>
 		<div class="row">
-			<div class="large-6 medium-6 small-12 columns large-centered">
+			<div class="large-8 medium-8 small-12 columns large-centered">
 				<div class="callout">
 					<div class="row">
 						<div class="large-6 medium-6 small-12 columns">
@@ -37,8 +37,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 						<tbody>
 							<?php
 								$uvjetUpit="%" . $uvjet . "%";
-								$izraz = $veza->prepare("select sifra, naziv_cina from cin
-								where naziv_cina like :uvjet");
+								$izraz = $veza->prepare("select sifra, naziv_cina from cin where naziv_cina like :uvjet order by naziv_cina");
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
 								foreach ($rezultati as $red):
@@ -60,10 +59,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 					</div>
 				</div>
 
-				<?php
-	include_once '../../predlosci/podnozje.php';
-				?>
-				<?php include_once '../../predlosci/skripte.php'
-				?>
+				<?php include_once '../../predlosci/podnozje.php'; ?>
+				<?php include_once '../../predlosci/skripte.php'; ?>
 	</body>
 </html>

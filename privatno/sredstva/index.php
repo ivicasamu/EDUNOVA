@@ -15,7 +15,7 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 		<?php include_once '../../predlosci/izbornik.php'
 		?>
 		<div class="row">
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-8 medium-12 small-12 columns large-centered">
 				<div class="callout">
 					<div class="row">
 						<div class="large-6 medium-6 small-12 columns">
@@ -31,7 +31,6 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 					<table class="hover unstriped">
 						<thead>
 							<tr>
-								<th>Šifra</th>
 								<th>Naziv sredstva</th>
 								<th>Jedinična mjera</th>
 								<th>Akcija</th>
@@ -41,13 +40,12 @@ $uvjet = isset($_GET["uvjet"]) ? $_GET["uvjet"] : "";
 							<?php
 								$uvjet = "%" . $uvjet . "%";
 								$izraz = $veza->prepare("select sifra, naziv_sredstva, jedinicna_mjera from sredstvo 
-														where naziv_sredstva like :uvjet order by naziv_sredstva");					
+														where concat(naziv_sredstva, jedinicna_mjera) like :uvjet order by naziv_sredstva");					
 								$izraz -> execute(array("uvjet"=>$uvjet));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
 								foreach ($rezultati as $red):
 							?>
 							<tr>
-								<td data-label="Šifra"><?php echo $red->sifra; ?></td>
 								<td data-label="Vrsta intervencije"><?php echo $red->naziv_sredstva; ?></td>
 								<td data-label="Pod vrsta intervencije"><?php echo $red->jedinicna_mjera; ?></td>
 								<td data-label="Akcija">

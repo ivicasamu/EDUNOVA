@@ -39,6 +39,7 @@ if(isset($_POST["odustani"])){
 <html class="no-js" lang="en" dir="ltr">
 	<head>
 		<?php include_once '../../predlosci/zaglavlje.php' ?>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 	</head>
   	<body>
   		<?php include_once '../../predlosci/izbornik.php' ?>
@@ -63,23 +64,24 @@ if(isset($_POST["odustani"])){
   							?>value="<?php echo $red->sifra; ?>"><?php echo $red->naziv; ?></option>
   							<?php endforeach; ?>
   						</select>
+  						<p>Vrsta vozila</p>
+  						<div id="jstree">
+  							
+						    <!-- in this example the tree is populated from inline HTML -->
+						    <ul>
+						    	<?php  ?>
+						      <li>Root node 1
+						        <ul>
+						          <li id="child_node_1">Child node 1</li>
+						          <li>Child node 2</li>
+						        </ul>
+						      </li>
+						      <li>Root node 2</li>
+						    </ul>
+						  </div>
+			  			<button>demo button</button>
   						
-  						<label for="vrsta">Vrsta vozila</label>
-  						<select name="vrsta">
-  							<?php  
-  								$izraz = $veza -> prepare("select sifra, concat(vrsta_vozila, ' / ', podvrsta_vozila, ' / ',podpodvrsta_vozila, ' / ') as vrsta 
-  															from kategorizacija_vozila order by vrsta_vozila");
-								$izraz->execute();
-								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
-								foreach ($rezultati as $red) :
-  							?>
-  							<option <?php  
-	  							if($entitet->vrsta!="" && $entitet->vrsta == $red->sifra){
-	  								echo "selected=\"selected\" ";
-	  							}
-  							?>value="<?php echo $red->sifra; ?>"><?php echo $red->vrsta; ?></option>
-  							<?php endforeach; ?>
-  						</select>
+  						
   						
   						<label id="reg_oznaka" for="reg_oznaka">Registarska oznaka</label>
   						<input name="reg_oznaka" id="reg_oznaka" type="text" value="<?php echo $entitet->reg_oznaka; ?>" />
@@ -114,5 +116,23 @@ if(isset($_POST["odustani"])){
     
 		<?php include_once '../../predlosci/podnozje.php'; ?>
     	<?php include_once '../../predlosci/skripte.php'; ?>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    	<script>
+    		$(function () {
+			    // 6 create an instance when the DOM is ready
+			    $('#jstree').jstree();
+			    // 7 bind to events triggered on the tree
+			    $('#jstree').on("changed.jstree", function (e, data) {
+			      console.log(data.selected);
+			    });
+			    // 8 interact with the tree - either way is OK
+			    $('button').on('click', function () {
+			      $('#jstree').jstree(true).select_node('child_node_1');
+			      $('#jstree').jstree('select_node', 'child_node_1');
+			      $.jstree.reference('#jstree').select_node('child_node_1');
+			    });
+			  });
+    	</script>
   	</body>
 </html>

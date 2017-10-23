@@ -35,7 +35,7 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
   					</div>
   							<?php  
 	  							$uvjetUpit="%" . $uvjet . "%";
-								$izraz=$veza->prepare("select count(*) from operater where concat (ime, prezime, email) like :uvjet");
+								$izraz=$veza->prepare("select count(*) from operater where concat (ime, prezime, email, uloga) like :uvjet");
 								$izraz->execute(array("uvjet"=>$uvjetUpit));
 								$ukupnoStranica = ceil($izraz->fetchColumn()/$rezultataPoStranici);
 								if($stranica>$ukupnoStranica){
@@ -48,7 +48,7 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 							<div class="row">
   							<?php  
 	  							$izraz = $veza->prepare("select sifra, ime,prezime, email, rezultata_po_stranici, uloga from operater 
-	  							where concat (ime, prezime, email) like :uvjet 
+	  							where concat (ime, prezime, email, uloga) like :uvjet 
 	  							limit " .(($rezultataPoStranici*$stranica)-$rezultataPoStranici) . "," .$rezultataPoStranici);
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ); 

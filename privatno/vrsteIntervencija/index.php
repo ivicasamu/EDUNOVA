@@ -39,7 +39,7 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 					<?php
 					$uvjetUpit = "%" . $uvjet . "%";
 					$izraz = $veza -> prepare("select count(*) from vrsta_intervencije where concat (vrsta_intervencije, podvrsta_intervencije,
-												podpodvrsta_intervencije, podpodpodvrsta_intervencije) like :uvjet");
+												podpodvrsta_intervencije) like :uvjet");
 					$izraz -> execute(array("uvjet" => $uvjetUpit));
 					$ukupnoStranica = ceil($izraz -> fetchColumn() / $rezultataPoStranici);
 					if ($stranica > $ukupnoStranica) {
@@ -57,16 +57,15 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 								<th>Vrsta intervencije</th>
 								<th>Pod vrsta intervencije</th>
 								<th>PodPod vrsta intervencije</th>
-								<th>PodPodPod vrsta intervencije</th>
 								<th>Akcija</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
 								$izraz = $veza->prepare("select sifra, vrsta_intervencije, podvrsta_intervencije, podpodvrsta_intervencije, 
-														podpodpodvrsta_intervencije, count(*) from vrsta_intervencije 
-														where concat (vrsta_intervencije, podvrsta_intervencije, podpodvrsta_intervencije, podpodpodvrsta_intervencije) like :uvjet
-														group by sifra order by vrsta_intervencije, podvrsta_intervencije
+														count(*) from vrsta_intervencije 
+														where concat (vrsta_intervencije, podvrsta_intervencije, podpodvrsta_intervencije) like :uvjet
+														group by sifra order by vrsta_intervencije, podvrsta_intervencije, podpodvrsta_intervencije
 														limit " .(($rezultataPoStranici*$stranica)-$rezultataPoStranici) . "," .$rezultataPoStranici);					
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
 								$rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
@@ -76,7 +75,6 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 								<td data-label="Vrsta intervencije"><?php echo $red->vrsta_intervencije; ?></td>
 								<td data-label="Pod vrsta intervencije"><?php echo $red->podvrsta_intervencije; ?></td>
 								<td data-label="PodPod vrsta intervencije"><?php echo $red->podpodvrsta_intervencije; ?></td>
-								<td data-label="PodPodPod vrsta intervencije"><?php echo $red->podpodpodvrsta_intervencije; ?></td>
 								<td data-label="Akcija">
 									<a href="promjena.php?sifra=<?php echo $red->sifra;?>">
 										<i class="step fi-page-edit size-72" title="Promjena"></i>

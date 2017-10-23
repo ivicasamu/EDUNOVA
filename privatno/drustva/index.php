@@ -55,8 +55,6 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 							<tr>
 								<th>VZO</th>
 								<th>Naziv</th>
-								<th>OIB</th>
-								<th>Matični broj</th>
 								<th>Mjesto</th>
 								<th>Ulica</th>
 								<th>Godina osnivanja</th>
@@ -66,7 +64,7 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 						<tbody>
 							<?php
 							
-								$izraz = $veza->prepare("select sifra, vzo, naziv, oib, mb, mjesto, ulica, godina_osnivanja from dvd 
+								$izraz = $veza->prepare("select sifra, vzo, naziv, mjesto, ulica, godina_osnivanja from dvd 
 														where concat(vzo, naziv, mjesto) like :uvjet
 														limit " . (($rezultataPoStranici*$stranica)-$rezultataPoStranici) . ", " . $rezultataPoStranici);					
 								$izraz -> execute(array("uvjet"=>$uvjetUpit));
@@ -80,8 +78,6 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 										<?php echo $red->naziv; ?>
 									</span>
 								</td>
-								<td data-label="OIB"><?php echo $red->oib; ?></td>
-								<td data-label="MB"><?php echo $red->mb; ?></td>
 								<td data-label="Mjesto"><?php echo $red->mjesto; ?></td>
 								<td data-label="Ulica"><?php echo $red->ulica; ?></td>
 								<td data-label="Godina osnivanja"><?php echo date("Y",strtotime($red->godina_osnivanja)); ?></td>

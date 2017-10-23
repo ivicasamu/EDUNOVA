@@ -10,12 +10,11 @@ if(isset($_GET["sifra"])){
 
 if(isset($_POST["promjena"])){
 	$izraz = $veza -> prepare("update vrsta_intervencije set vrsta_intervencije=:vrsta_intervencije, podvrsta_intervencije=:podvrsta_intervencije, 
-							podpodvrsta_intervencije=:podpodvrsta_intervencije, podpodpodvrsta_intervencije=:podpodpodvrsta_intervencije where sifra=:sifra");
+							podpodvrsta_intervencije=:podpodvrsta_intervencije where sifra=:sifra");
 	$izraz -> execute(array(
 	"vrsta_intervencije"=>$_POST["vrsta_intervencije"],
 	"podvrsta_intervencije"=>$_POST["podvrsta_intervencije"],
 	"podpodvrsta_intervencije"=>$_POST["podpodvrsta_intervencije"],
-	"podpodpodvrsta_intervencije"=>$_POST["podpodpodvrsta_intervencije"],
 	"sifra"=>$_POST["sifra"]
 	));	
 	
@@ -52,9 +51,6 @@ if(isset($_POST["odustani"])){
   						
   						<label id="podpodvrsta_intervencije" for="podpodvrsta_intervencije">PodPodVrsta intervencije</label>
   						<input name="podpodvrsta_intervencije" id="podpodvrsta_intervencije" type="text" value="<?php echo $entitet->podpodvrsta_intervencije; ?>" />
-  						
-  						<label id="podpodpodvrsta_intervencije" for="podpodpodvrsta_intervencije">PodPodPodVrsta intervencije</label>
-  						<input name="podpodpodvrsta_intervencije" id="podpodpodvrsta_intervencije" type="text" value="<?php echo $entitet->podpodpodvrsta_intervencije; ?>" />
   						
   						<input name="promjena" type="submit" class="button expanded" value="<?php 
 							if($entitet->vrsta_intervencije==""){

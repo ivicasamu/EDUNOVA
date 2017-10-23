@@ -9,12 +9,10 @@ if(isset($_GET["sifra"])){
 }
 
 if(isset($_POST["promjena"])){
-	$izraz = $veza -> prepare("update kategorizacija_vozila set vrsta_vozila=:vrsta_vozila, podvrsta_vozila=:podvrsta_vozila, 
-								podpodvrsta_vozila=:podpodvrsta_vozila where sifra=:sifra");
+	$izraz = $veza -> prepare("update kategorizacija_vozila set vrsta_vozila=:vrsta_vozila, podvrsta_vozila=:podvrsta_vozila where sifra=:sifra");
 	$izraz -> execute(array(
 	"vrsta_vozila"=>$_POST["vrsta_vozila"],
 	"podvrsta_vozila"=>$_POST["podvrsta_vozila"],
-	"podpodvrsta_vozila"=>$_POST["podpodvrsta_vozila"],
 	"sifra"=>$_POST["sifra"]
 	));	
 	
@@ -48,9 +46,6 @@ if(isset($_POST["odustani"])){
   						
   						<label id="podvrsta_vozila" for="podvrsta_vozila">PodVrsta vozila</label>
   						<input name="podvrsta_vozila" id="podvrsta_vozila" type="text" value="<?php echo $entitet->podvrsta_vozila; ?>" />
-  						
-  						<label id="podpodvrsta_vozila" for="podpodvrsta_vozila">PodPodVrsta vozila</label>
-  						<input name="podpodvrsta_vozila" id="podpodvrsta_vozila" type="text" value="<?php echo $entitet->podpodvrsta_vozila; ?>" />
   						
   						<input name="promjena" type="submit" class="button expanded" value="<?php 
 							if($entitet->vrsta_vozila==""){

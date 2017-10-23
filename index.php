@@ -15,11 +15,72 @@ if(isset($_SESSION["logiran"])){
   		<div class="row">
   			<div class="large-12 medium-12 small-12 centered columns">
   				<div class="callout">
-  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi felis, rhoncus ac lorem in, porta scelerisque risus. 
-  					Etiam vel erat vitae lacus interdum pharetra vel ac enim. Orci varius natoque penatibus et magnis dis parturient montes, 
-  					nascetur ridiculus mus. Ut eu sollicitudin magna, tristique condimentum orci. Suspendisse vehicula sem sit amet ligula 
-  					hendrerit porttitor et ac nunc. In cursus tellus non gravida egestas. Nunc lacinia nulla nibh, ac pharetra lacus scelerisque 
-  					a.</p>
+  					<div class="row">
+  						<div class="large-6 medium-12 small-12 columns">
+  							<table class="hover unstriped">
+  								<thead>
+  									<tr>
+  										<th>Broj društava u sustavu</th>
+  										<th>Broj članova u sustavu</th>
+  										<th>Broj operatera sustava</th>
+  										<th>Broj vozila u sustavu</th>
+  									</tr>
+  								</thead>
+  								<tbody>
+  									<?php  
+  										$izraz = $veza->prepare("select count(sifra) from dvd");					
+										$izraz -> execute();
+										$countDvd = $izraz->fetchColumn();
+										
+										$izraz = $veza->prepare("select count(sifra) from clan");					
+										$izraz -> execute();
+										$countClan = $izraz->fetchColumn();
+										
+										$izraz = $veza->prepare("select count(sifra) from operater");					
+										$izraz -> execute();
+										$countOperater = $izraz->fetchColumn();
+										
+										$izraz = $veza->prepare("select count(sifra) from vozilo");					
+										$izraz -> execute();
+										$countVozilo = $izraz->fetchColumn();
+  									?>
+  									<tr>
+  										<td data-label="Broj društava u sustavu"><?php echo $countDvd ?></td>
+  										<td data-label="Broj članova u sustavu"><?php echo $countClan ?></td>
+  										<td data-label="Broj operatera sustava"><?php echo $countOperater ?></td>
+  										<td data-label="Broj vozila u sustavu"><?php echo $countVozilo ?></td>
+  									</tr>
+  								</tbody>
+  							</table>
+  						</div>
+  						
+  						<div class="large-6 medium-12 small-12 columns">
+  							
+  							<table class="hover unstriped">
+  								<?php 
+				                	$izraz = $veza->prepare("select b.vrsta_intervencije as intervencija, count(a.vrsta_intervencije) as ukupno
+															from intervencija a inner join vrsta_intervencije b on b.sifra=a.vrsta_intervencije
+															group by a.vrsta_intervencije;");
+									$izraz -> execute();
+									$rezultat = $izraz->fetchAll(PDO::FETCH_OBJ);
+								?>
+								<thead>
+  									<tr>
+  										<th>Broj požarnih intervencija</th>
+  										<th>Broj tehničkih intervencija</th>
+  										<th>Broj ostalih intervencija</th>
+  										<th>Broj drugih aktivnosti</th>
+  									</tr>
+  								<tbody>
+  									<tr>
+  										<?php foreach ($rezultat as $red): ?>
+  											<td data-label="<?php echo $red->intervencija; ?>"><?php echo $red->ukupno; ?></td>
+  										<?php endforeach; ?>
+  									</tr>
+  								</tbody>
+  							</table>
+  						</div>
+  					</div>
   				</div>
   			</div>
   		</div>

@@ -82,7 +82,7 @@ if (isset($_SESSION["logiran"] -> rezultata_po_stranici)) {
 								<td data-label="Registarska oznaka"><?php echo $red->reg_oznaka; ?></td>
 								<td data-label="Naziv"><?php echo $red->nazivVozilo; ?></td>
 								<td data-label="Model"><?php echo $red->proizvodac; ?></td>
-								<td data-label="Godina proizvodnje"><?php echo $red->godina_proizvodnje; ?></td>
+								<td data-label="Godina proizvodnje"><?php echo date("Y",strtotime ($red->godina_proizvodnje)); ?></td>
 								<td data-label="Akcija">
 									<a href="promjena.php?sifra=<?php echo $red->sifra;?>">
 										<i class="step fi-page-edit size-72" title="Promjena"></i>

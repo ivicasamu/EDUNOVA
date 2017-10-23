@@ -17,11 +17,18 @@ switch ($_SERVER["HTTP_HOST"]) {
 		$mysqlLozinka="123";
 		break;
 	case 'ivicasamu.byethost31.com':
-		$putanjaAPP="/Vatrogasci/";
+		$putanjaAPP="/";
 		$mysqlHost="sql208.byethost31.com";
 		$mysqlBaza="b31_20115711_firefighters";
 		$mysqlKorisnik="b31_20115711";
 		$mysqlLozinka="PLjw6udVpomb.26R";
+		break;
+	case '54.37.13.127':
+		$putanjaAPP="/vatrogasci/";
+		$mysqlHost="localhost";
+		$mysqlBaza="firefighters";
+		$mysqlKorisnik="dvd";
+		$mysqlLozinka="pomb.26R";
 		break;
 	
 	default:

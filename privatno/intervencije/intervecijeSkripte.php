@@ -52,11 +52,6 @@
 	
 	definirajBrisanjeDvd();
 	
-	
-	$( "#uvjetDvd" ).focus(function() {
-		$('html,body').animate({ scrollTop: 800 }, 'slow');
-	})
-	
 //CLAN	
 	$( "#uvjetClan" ).autocomplete({
 		source: "traziClan.php?intervencija=<?php echo $_GET["sifra"] ?>",
@@ -109,11 +104,7 @@
 	}
 	
 	definirajBrisanjeClan();
-	
-	
-	$( "#uvjetClan" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1400 }, 'slow');
-	})
+
 	
 	//VOZILO	
 	$( "#uvjetVozilo" ).autocomplete({
@@ -170,10 +161,6 @@
 	definirajBrisanjeVozilo();
 	
 	
-	$( "#uvjetVozilo" ).focus(function() {
-		$('html,body').animate({ scrollTop: 800 }, 'slow');
-	});
-	
 //SREDSTVO
 $( "#uvjetSredstvo" ).autocomplete({
 		source: "traziSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>",	
@@ -183,7 +170,11 @@ $( "#uvjetSredstvo" ).autocomplete({
 	    select: function(event, ui) {
 	        $(this).val('').blur();
 	        event.preventDefault();
-	        spremiUBazuSredstvo(ui.item);
+	        sredstvo=ui.item;
+	        $("#odabrano").html(ui.item.naziv);
+	        $("#revealKolicina").foundation('open');
+	        $("#kolicina").focus();
+	        //spremiUBazuSredstvo(ui.item);
 	    }
 		}).data( "ui-autocomplete" )._renderItem = function( ul, objektSredstvo ){
 	      return $( "<li><img style=\"width: 50px\" src=\"https://vignette.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest?cb=20151119092211\" />" )
@@ -191,17 +182,24 @@ $( "#uvjetSredstvo" ).autocomplete({
 	        .appendTo( ul );
 	}
 	
-	function spremiUBazuSredstvo(sredstvo){
-		console.log(sredstvo.sifra);
-		$.get( "dodajSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>&sredstvo=" + sredstvo.sifra, 
+	$("#spremiUBazuSKolicinom").click(function(){
+		    	spremiUBazuSredstvo();
+		    	
+		    	return false;
+		    });
+	
+	function spremiUBazuSredstvo(){
+		console.log(kolicina);
+		$.get( "dodajSredstvo.php?intervencija=<?php echo $_GET["sifra"] ?>&sredstvo=" + sredstvo.sifra + "&kolicina=" + $("#kolicina").val(), 
 			function( vratioServer ) {
 			if(vratioServer=="OK"){
-				$("#intervencijaSredstvo").append("<tr id=\"sredstvo_" + sredstvo.sifra + "\" style=\"display: none\">" + 
-				"<td>" + sredstvo.naziv_sredstva + "</td>" +  
+				$("#intervencijaSredstvo").append("<tr id=\"sredstvo_" + sredstvo.sifra + "\" >" +  
+				"<td>" + sredstvo.naziv_sredstva + "</td><td>" + $("#kolicina").val() + "</td>" +   
 				"<td><i id=\"b_" + sredstvo.sifra + "\" title=\"Brisanje\" class=\"step fi-page-delete size-48 brisanjeSredstvo\"></i></td>" + 
 				"</tr>");
-				$("#sredstvo_" + sredstvo.sifra).fadeIn();
 				definirajBrisanjeSredstvo();
+				$("#revealKolicina").foundation('close');
+				$("#kolicina").val("");
 			}else{
 				alert(vratioServer);
 			}
@@ -224,11 +222,6 @@ $( "#uvjetSredstvo" ).autocomplete({
 	}
 	
 	definirajBrisanjeSredstvo();
-	
-	
-	$( "#uvjetSredstvo" ).focus(function() {
-		$('html,body').animate({ scrollTop: 1400 }, 'slow');
-	});
 	
 	$(".promjenaSredstvo").click(function(){
 				$("#promjenaSredstvo").html("Promjena količine");
