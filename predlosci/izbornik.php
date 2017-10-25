@@ -54,7 +54,7 @@
 	        </a>
 	        <ul class="menu vertical">
 	          <li><a href="https://github.com/ivicasamu/EDUNOVA/tree/PROJECT">GitHub kod</a></li>
-	          <li><a href="https://github.com/ivicasamu/EDUNOVA/blob/PROJECT/database/ERA.png">ERA diagram</a></li>
+	          <li><a href="https://github.com/ivicasamu/EDUNOVA/blob/PROJECT/database/ERA.png" target="_blank">ERA diagram</a></li>
 	        </ul>
       	</li>
       <?php endif; ?>
@@ -66,7 +66,7 @@
       </li>
       <?php if(isset($_SESSION["logiran"]) && $_SESSION["logiran"]->uloga==="Korisnik"): ?>
       	<li>
-      		<a href="<?php echo $putanjaAPP;  ?>privatno/operater/operaterProfil.php">
+      		<a href="<?php echo $putanjaAPP;  ?>privatno/operateri/operaterProfil.php">
       			<i title="Profil" class="step fi-widget size-60"></i>
       			<span class="hide-for-small-only"> Profil</span>		
       		</a>
