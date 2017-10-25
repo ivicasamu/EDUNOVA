@@ -88,7 +88,7 @@ if(isset($_SESSION["logiran"]->rezultata_po_stranici)){
 									<a href="promjena.php?sifra=<?php echo $red->sifra;?>">
 										<i class="step fi-page-edit size-72" title="Promjena"></i>
 									</a>
-									<a onclick="return confirm('Sigurno obrisati?');" href="brisanje.php?sifra=<?php echo $red->sifra;?>&stranica=<?php echo $_GET["stranica"] ?>&uvjet=<?php echo $_GET["uvjet"] ?>">
+									<a onclick="return confirm('Sigurno obrisati?');" href="brisanje.php?sifra=<?php echo $red->sifra;?>">
 										<i class="step fi-page-delete size-72" title="Brisanje"></i>
 									</a>
 								</td>

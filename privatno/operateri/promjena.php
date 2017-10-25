@@ -55,6 +55,7 @@ if(isset($_POST["sifra"])){
   						<input type="submit" class="button" value="Promjeni" />
   						<input type="hidden" name="sifra" value="<?php echo $entitet->sifra; ?>" />
   						<a href="index.php" class="alert button">Odustani</a>
+  						<a class="button warning" href="promjenaLozinke.php?sifra=<?php echo $entitet->sifra; ?>">Promjena lozinke</a>
   					</fieldset>
   				</form>	
   			</div>

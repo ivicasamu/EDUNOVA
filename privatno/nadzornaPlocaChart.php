@@ -27,7 +27,7 @@
                 <?php 
                 	$izraz = $veza->prepare("select b.vrsta_intervencije as intervencija, count(a.vrsta_intervencije) as ukupno
 											from intervencija a inner join vrsta_intervencije b on b.sifra=a.vrsta_intervencije
-											group by a.vrsta_intervencije;");
+											group by b.vrsta_intervencije;");
 					$izraz -> execute();
 					$rezultat = $izraz->fetchAll(PDO::FETCH_OBJ);
 					foreach ($rezultat as $red): 

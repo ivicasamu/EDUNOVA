@@ -106,29 +106,29 @@ if(isset($_POST["odustani"])){
 	  						</select>
 	  						
 	  						<label id="datum_nastanka" for="datum_nastanka">Datum nastanka</label>
-	  						<input name="datum_nastanka" id="datum_nastanka" type="datetime" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php 
+	  						<input name="datum_nastanka" id="datum_nastanka" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
 	  						if($entitet->datum_nastanka!=0){
-	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_nastanka)); }?>"/>
+	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_nastanka)); }?>"/>
 	  						
 	  						<label id="datum_dojave" for="datum_dojave">Datum dojave</label>
-	  						<input name="datum_dojave" id="datum_dojave" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
+	  						<input name="datum_dojave" id="datum_dojave" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
 	  						if($entitet->datum_dojave!=0){
-	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_dojave)); }?>" />
+	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_dojave)); }?>" />
 	  						
 	  						<label id="datum_dolaska" for="datum_dolaska">Datum dolaska</label>
-	  						<input name="datum_dolaska" id="datum_dolaska" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
+	  						<input name="datum_dolaska" id="datum_dolaska" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
 	  						if($entitet->datum_dolaska!=0){
-	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_dolaska)); }?>" />
+	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_dolaska)); }?>" />
 	  						
 	  						<label id="datum_lokalizacije" for="datum_lokalizacije">Datum lokalizacije</label>
-	  						<input name="datum_lokalizacije" id="datum_lokalizacije" type="datetime" placeholder="dd-mm-yyyy  hh:mm:ss" value="<?php 
+	  						<input name="datum_lokalizacije" id="datum_lokalizacije" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
 	  						if($entitet->datum_lokalizacije!=0){
-	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_lokalizacije)); }?>" />
+	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_lokalizacije)); }?>" />
 	  						
 	  						<label id="datum_zavrsetka" for="datum_zavrsetka">Datum završetka intervencije</label>
-	  						<input name="datum_zavrsetka" id="datum_zavrsetka" type="datetime" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php 
+	  						<input name="datum_zavrsetka" id="datum_zavrsetka" type="datetime" placeholder="yyyy-mm-dd hh:mm:ss" value="<?php 
 	  						if($entitet->datum_zavrsetka!=0){
-	  							echo date("d-m-Y H:i:s",strtotime($entitet->datum_zavrsetka)); }?>" />
+	  							echo date("Y-m-d H:i:s",strtotime($entitet->datum_zavrsetka)); }?>" />
 	  						
 	  						<label id="mjesto" for="mjesto">Mjesto</label>
 	  						<input name="mjesto" id="mjesto" type="text" value="<?php echo $entitet->mjesto; ?>" />
@@ -199,10 +199,10 @@ if(isset($_POST["odustani"])){
 												<th>Društvo</th>
 												<th>Akcija</th>
 											</tr>
-										</thead
+										</thead>
 										<tbody id="intervencijaVozilo">
 											<?php 
-												$izraz=$veza->prepare("select d.vrsta_vozila, a.reg_oznaka, c.naziv from vozilo a inner join vozilo_intervencija b on a.sifra=b.vozilo
+												$izraz=$veza->prepare("select a.sifra, d.vrsta_vozila, a.reg_oznaka, c.naziv from vozilo a inner join vozilo_intervencija b on a.sifra=b.vozilo
 																		inner join dvd c on a.dvd=c.sifra
 																		inner join kategorizacija_vozila d on a.vrsta=d.sifra
 																		where b.intervencija='$entitet->sifra'
@@ -235,7 +235,7 @@ if(isset($_POST["odustani"])){
 												<th>Društvo</th>
 												<th>Akcija</th>
 											</tr>
-										</thead
+										</thead>
 										<tbody id="intervencijaClan">
 											<?php 
 												$izraz=$veza->prepare("select a.sifra, concat(a.ime, ' ', a.prezime) as imePrezime, d.naziv 
@@ -271,7 +271,7 @@ if(isset($_POST["odustani"])){
 												<th>Količina</th>
 												<th>Akcija</th>
 											</tr>
-										</thead
+										</thead>
 										<tbody id="intervencijaSredstvo">
 											<?php 
 												$izraz=$veza->prepare("select b.sifra, b.naziv_sredstva, a.kolicina_sredstava, b.jedinicna_mjera from sredstvo_intervencija a 

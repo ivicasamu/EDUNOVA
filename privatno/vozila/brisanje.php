@@ -3,7 +3,7 @@
 	provjeraLogin();
 
 	if(isset($_GET["sifra"])){
-		$izraz = $veza->prepare("select a.sifra, c.datum_dojave 
+		$izraz = $veza->prepare("select c.sifra, c.datum_dojave 
 								from vozilo a 
 								inner join vozilo_intervencija b on a.sifra=b.vozilo
 								inner join intervencija c on b.intervencija=c.sifra 

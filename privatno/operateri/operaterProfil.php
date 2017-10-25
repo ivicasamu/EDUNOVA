@@ -22,9 +22,9 @@ if(isset($_POST["lozinka"])){
 	}else{
 		header("location: " . $putanjaAPP . "privatno/nadzornaPloca.php");
 	}
-	
+	$_SESSION["logiran"]->rezultata_po_stranici = $_POST["rezultata_po_stranici"];
 }
-$_SESSION["logiran"]->rezultata_po_stranici = $_POST["rezultata_po_stranici"];
+
 ?>
 
 <!doctype html>

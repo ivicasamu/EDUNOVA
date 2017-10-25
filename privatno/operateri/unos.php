@@ -4,13 +4,13 @@ $greske=array();
 
 if(isset($_POST["email"])){
 	if(isset($_SESSION["logiran"])){
-		$izraz=$veza->prepare("insert into operater(ime, prezime, email, lozinka, uloga, rezultata_po_stranici) 
-		values (:ime,:prezime,:email,md5(:lozinka),:uloga, :rezultata_po_stranici)");
+		$izraz=$veza->prepare("insert into operater(ime, prezime, email, lozinka, uloga) 
+		values (:ime,:prezime,:email,md5(:lozinka),:uloga)");
 		$unioRedova = $izraz->execute($_POST);
 		header("location: index.php");
 	}else{
-		$izraz=$veza->prepare("insert into operater(ime, prezime, email, lozinka,uloga, rezultata_po_stranici) 
-		values (:ime,:prezime,:email,md5(:lozinka),'korisnik', :rezultata_po_stranici)");
+		$izraz=$veza->prepare("insert into operater(ime, prezime, email, lozinka,uloga) 
+		values (:ime,:prezime,:email,md5(:lozinka), 'Korisnik')");
 		$unioRedova = $izraz->execute($_POST);
 		header("location: " . $GLOBALS["putanjaAPP"] ."javno/prijava.php?registracijaUspjesna");
 	}
@@ -41,9 +41,6 @@ if(isset($_POST["email"])){
   						
   						<label for="lozinka">Lozinka</label>
 						<input name="lozinka" id="lozinka" type="password"/>
-						
-						<label for="rezultata_po_stranici">Rezultata po stranici</label>
-						<input name="rezultata_po_stranici" id="rezultata_po_stranici" type="number"/>
 						
 						<?php if(isset($_SESSION["logiran"])): ?>
 						<label for="uloga">Uloga</label>

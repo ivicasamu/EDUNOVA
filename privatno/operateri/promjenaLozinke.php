@@ -2,10 +2,12 @@
 provjeraLogin();
 provjeraUloga("Administrator");
 
+$sifra=$_GET["sifra"];
+
 if(isset($_POST["sifra"])){
 	$izraz=$veza->prepare("update operater set lozinka=md5(:lozinka) where sifra=:sifra");
 	$izraz->execute($_POST);
-	header("location: index.php");
+	header("location: promjena.php?sifra=" .$sifra. "&updatePass");
 }
 ?>
 
